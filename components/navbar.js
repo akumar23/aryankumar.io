@@ -101,13 +101,13 @@ const Navbar = props => {
                 aria-label="Options"
               />
               <MenuList>
-                <LinkItem href="/" path={path}>
-                    Particle Page
-                </LinkItem>
-                <LinkItem href="/home" path={path}>
-                    Home
-                </LinkItem>
-                <NextLink href="/Projects" passHref>
+                <NextLink href="/" path={path}>
+                <MenuItem as={Link}>Particle Page</MenuItem>
+                </NextLink>
+                <NextLink href="/home" path={path}>
+                    <MenuItem as={Link}>Home</MenuItem>
+                </NextLink>
+                <NextLink href="/projects" passHref>
                   <MenuItem as={Link}>Projects</MenuItem>
                 </NextLink>
                 <MenuItem
