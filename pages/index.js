@@ -81,36 +81,41 @@ const Home = () => (
           <br></br>
           If you're reading this you're one of my best friends.
           Not trying to sound too sad but its rare that I get close with someone so 
-          thanks for being there when I reach out you're cool
+          thanks for being there when I reach out you're cool :)
+
           
           <br></br>
           <br></br>
           Freelance Python Developer - Expert Witness LLC 
           
           <br></br>
-            -designed a python script that automated data collection 
-            {' '}
+            -designed a {' '}
+          <NextLink href="https://github.com/akumar23/CourtScraper" passHref scroll={false}>
+            <Link>python script</Link>
+          </NextLink> that automated data collection 
+      
             <br></br>
             <br></br>
-            Some notable person projects that I've worked on are:
+            Some notable personal projects that I've worked on are:
             <br></br> 
           <NextLink href="https://snake-webapp.herokuapp.com/" passHref scroll={false}>
             <Link>Snake Game Webapp</Link>
+          </NextLink>
+          <br></br>
+          <NextLink href="https://youtu.be/dVwozVz11ho?t=78" passHref scroll={false}>
+            <Link>HAL: AI Chatbot</Link>
           </NextLink>
         </Paragraph>
         <Box align="center" my={4}>
           <NextLink href="/works" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My portfolio
+              Click here for more detail about my projects 
             </Button>
           </NextLink>
         </Box>
       </Section>
 
       <Section delay={0.3}>
-        <Heading as="h3" variant="section-title">
-          Checkout all my source code here
-        </Heading>
         <List>
           <ListItem>
             <Link href="https://github.com/craftzdog" target="_blank">
