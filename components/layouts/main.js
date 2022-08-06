@@ -2,12 +2,6 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {Box, Container} from '@chakra-ui/react'
 import NavBar from '../navbar'
-import ParticleLoader from '../particle-loader'
-
-const LoadParticles = dynamic(() => import('../particles'), {
-    ssr:false,
-    loading: () => <ParticleLoader />
-})
 
 const Main = ({children, router}) => {
     return (
@@ -19,9 +13,7 @@ const Main = ({children, router}) => {
             </Head>
             
             <NavBar path={router.asPath} />
-            <canvas id="webgl"></canvas>
             <Container maxW="container.md" pt={14}>
-                <LoadParticles />
                 {children}
             </Container>
 

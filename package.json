@@ -19,6 +19,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "three": "^0.143.0",
+    "three-text-geometry": "^0.0.0",
     "three.js": "^0.77.1"
   },
   "devDependencies": {

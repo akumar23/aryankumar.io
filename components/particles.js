@@ -2,24 +2,6 @@ import { useEffect, useState, useRef } from 'react'
 import * as three from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { ParticleContainer, ParticleSpin } from './particle-loader'
-import NextLink from 'next/link'
-import {
-  Link,
-  Container,
-  Heading,
-  Box,
-  SimpleGrid,
-  Button,
-  List,
-  ListItem,
-  useColorModeValue,
-  chakra,
-  Tab
-} from '@chakra-ui/react'
-
-const ProfileImage = chakra(Image, {
-    shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
-  })
 
 const Particles = () => {
 
@@ -61,6 +43,8 @@ const Particles = () => {
         const sphere = new three.Points(geometry,material)
         const particle = new three.Points(particlesGeometry, particleMaterial)
         scene.add(sphere, particle)
+
+        //Add text
 
         // Lights
 
@@ -160,7 +144,7 @@ const Particles = () => {
     })
 
     return (
-        <ParticleContainer ref={refContainer}>{loading && <ParticleSpin />} SCROLL DOWN </ParticleContainer>
+        <ParticleContainer ref={refContainer}>{loading && <ParticleSpin />} </ParticleContainer>
     )
 
 }
