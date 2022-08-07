@@ -44,7 +44,7 @@ const Home = () => (
           <Heading as="h2" variant="page-title">
             Aryan Kumar
           </Heading>
-          <p>Software Engineer/ Full Stack Developer</p>
+          <p>Software Engineer / Full Stack Developer</p>
         </Box>
         <Box
           flexShrink={0}
@@ -115,6 +115,22 @@ const Home = () => (
             </Button>
           </NextLink>
         </Box>
+      </Section>
+      
+      <Section delay={0.1}>
+        <Heading as="h3" variant="section-title">
+          Skills
+        </Heading>
+        <Paragraph>
+            <br></br>
+            Python, Java, JavaScript, Golang
+            <br></br>
+            mySQL, Amazon AWS
+            <br></br>
+            Docker
+            <br></br>
+            Springboot, Flask, next.js
+        </Paragraph>
       </Section>
 
       <Section delay={0.3}>

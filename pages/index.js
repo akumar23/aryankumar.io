@@ -19,7 +19,7 @@ const ProfileImage = chakra(Image, {
 const Index = () => (
     
     <Container>
-
+      
         <Center><canvas id="webgl"></canvas></Center>
         <LoadParticles />
 

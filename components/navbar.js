@@ -65,9 +65,7 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          <LinkItem href="/" path={path}>
-            Particle Page 
-          </LinkItem>
+
           <LinkItem href="/home" path={path}>
             Home
           </LinkItem>
@@ -86,6 +84,9 @@ const Navbar = props => {
             <IoLogoGithub />
             Source
           </LinkItem>
+          <LinkItem href="/contact" path={path}>
+            Contact Me
+          </LinkItem>
         </Stack>
 
         <Box flex={1} align="right">
@@ -101,9 +102,6 @@ const Navbar = props => {
                 aria-label="Options"
               />
               <MenuList>
-                <NextLink href="/" path={path}>
-                <MenuItem as={Link}>Particle Page</MenuItem>
-                </NextLink>
                 <NextLink href="/home" path={path}>
                     <MenuItem as={Link}>Home</MenuItem>
                 </NextLink>
@@ -116,6 +114,9 @@ const Navbar = props => {
                 >
                   Source
                 </MenuItem>
+                <NextLink href="/contact" passHref>
+                  <MenuItem as={Link}>Contact Me</MenuItem>
+                </NextLink>
               </MenuList>
             </Menu>
           </Box>
