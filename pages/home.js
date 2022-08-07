@@ -136,7 +136,7 @@ const Home = () => (
       <Section delay={0.3}>
         <List>
           <ListItem>
-            <Link href="https://github.com/craftzdog" target="_blank">
+            <Link href="https://github.com/akumar23" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
