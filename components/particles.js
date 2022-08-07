@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react'
 import * as three from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { ParticleContainer, ParticleSpin } from './particle-loader'
+import { TextGeometry, FontLoader } from 'three'
+import { BMFont } from 'three-text-geometry' 
 
 const Particles = () => {
 
@@ -42,9 +44,13 @@ const Particles = () => {
         // Mesh
         const sphere = new three.Points(geometry,material)
         const particle = new three.Points(particlesGeometry, particleMaterial)
+     
+        //Add text
+
+        // add to scene
         scene.add(sphere, particle)
 
-        //Add text
+   
 
         // Lights
 
