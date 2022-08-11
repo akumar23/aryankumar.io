@@ -81,14 +81,12 @@ const Home = () => (
         <Paragraph>
 
           <br></br>
-          If you're reading this you're one of my best friends.
-          Not trying to sound too sad but its rare that I get close with someone so 
-          thanks for being there when I reach out you're cool :)
+          Wirte cool stuff about myself here
 
           
           <br></br>
           <br></br>
-          Freelance Python Developer - Expert Witness LLC 
+          Freelance Python Developer - Expert Witness Profiler LLC 
           
           <br></br>
             -designed a {' '}
