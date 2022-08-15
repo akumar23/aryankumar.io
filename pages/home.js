@@ -79,12 +79,7 @@ const Home = () => (
           Work
         </Heading>
         <Paragraph>
-
-          <br></br>
-          Wirte cool stuff about myself here
-
           
-          <br></br>
           <br></br>
           Freelance Python Developer - Expert Witness Profiler LLC 
           

@@ -12,6 +12,11 @@ import { GridItem } from '../components/grid-item'
 import {motion} from 'framer-motion'
 
 import thumbHal from '../public/projectImage/hal.png'
+import thumbFast from '../public/projectImage/fast-pages.png'
+import thumbSnake from '../public/projectImage/snake.png'
+import thumbRest from '../public/projectImage/rest.png'
+import thumbRank from '../public/projectImage/heroRank.png'
+import thumbTest from '../public/projectImage/ai-test.png'
 
 const StyledDiv = chakra(motion.div, {
   shouldForwardProp: prop => {
@@ -47,22 +52,80 @@ const Projects = () => (
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h3" variant="section-title">
-            Project List
+            Python Projects
           </Heading>
         </Box>
       </Box>
 
-      <SimpleGrid columns={[1, 1, 2]} gap={6}>
+      <SimpleGrid columns={[1, 1, 3]} gap={6}>
 
         <Section>
-          <GridItem id="hal" title="hal" thumbnail={thumbHal}>
+          <GridItem id="hal" title="Hal" thumbnail={thumbHal}>
             AI chatbot for advising SJSU students
             made with: Python, Flask, JavaScript, CSS and HTML
           </GridItem>
         </Section>
 
+        <Section>
+          <GridItem id="snake" title="Snake Game" thumbnail={thumbSnake}>
+            Full stack webapp to let users play the game snake
+            made with: Python, JavaScript, Flask, mySQL, CSS and HTML
+          </GridItem>
+        </Section>
+
+        <Section>
+          <GridItem id="rest" title="Django Rest API (work in progress)" thumbnail={thumbRest}>
+            Django Framework to work with Rest APIs
+            made with: Python, Django, Rest API
+          </GridItem>
+        </Section>
 
       </SimpleGrid>
+
+      <Box display={{ md: 'flex' }}>
+        <Box flexGrow={1}>
+          <Heading as="h3" variant="section-title">
+            Full Stack node.js Projects
+          </Heading>
+        </Box>
+      </Box>
+
+      <SimpleGrid columns={[1, 1, 3]} gap={6}>
+        <Section>
+          <GridItem id="rank" title="Character Rank (work in progress)" thumbnail={thumbRank}>
+            Full stack webapp where characters are ranked based on user's votes 
+            <br></br>
+            made with: node/next.js, TypeScript, TRPC, Tailwind CSS, three.js and prisma
+          </GridItem>
+        </Section>
+      </SimpleGrid>
+
+      <Box display={{ md: 'flex' }}>
+        <Box flexGrow={1}>
+          <Heading as="h3" variant="section-title">
+            Java Projects
+          </Heading>
+        </Box>
+      </Box>
+
+    <SimpleGrid columns={[1, 1, 3]} gap={6}>
+      <Section>
+          <GridItem id="fast" title="Fast Pages" thumbnail={thumbFast}>
+            Online library system
+            <br></br>
+            made with: Java, Springboot, AWS, Docker, RDS, mySQL, CSS (bootstrap), HTML
+          </GridItem>
+        </Section>
+
+        <Section>
+          <GridItem id="aiTest" title="AI App Testing" thumbnail={thumbTest}>
+            Aumoated App testing for an AI chat app
+            <br></br>
+            made with: Java, Android Emulator
+          </GridItem>
+        </Section>
+
+    </SimpleGrid>
 
     </Container>
 )
