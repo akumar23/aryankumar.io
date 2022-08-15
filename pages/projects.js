@@ -1,11 +1,34 @@
 import { 
   Container, 
   Heading, 
-  SimpleGrid, 
-  Divider, 
+  SimpleGrid,  
   Box, 
-  useColorModeValue 
+  useColorModeValue, 
+  chakra,
+  shouldForwardProp
 } from '@chakra-ui/react'
+
+import { GridItem } from '../components/grid-item'
+import {motion} from 'framer-motion'
+
+import thumbHal from '../public/projectImage/hal.png'
+
+const StyledDiv = chakra(motion.div, {
+  shouldForwardProp: prop => {
+    return shouldForwardProp(prop) || prop === 'transition'
+  }
+})
+
+export const Section = ({children, delay = 0}) => (
+  <StyledDiv 
+  initial={{ y:10, opacity:0}} 
+  animate= {{y:0, opacity: 1}} 
+  transition={{duration:0.8, delay}} 
+  mb={6}
+  >
+    {children}
+  </StyledDiv>
+)
 
 const Projects = () => (
     <Container>
@@ -28,6 +51,18 @@ const Projects = () => (
           </Heading>
         </Box>
       </Box>
+
+      <SimpleGrid columns={[1, 1, 2]} gap={6}>
+
+        <Section>
+          <GridItem id="hal" title="hal" thumbnail={thumbHal}>
+            AI chatbot for advising SJSU students
+            made with: Python, Flask, JavaScript, CSS and HTML
+          </GridItem>
+        </Section>
+
+
+      </SimpleGrid>
 
     </Container>
 )
