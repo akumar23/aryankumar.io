@@ -19,6 +19,18 @@ import Section from '../components/section'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { IoLogoGithub } from 'react-icons/io5'
 
+import { GridItem } from '../components/grid-item'
+import {motion} from 'framer-motion'
+
+import thumbHal from '../public/projectImage/hal.png'
+import thumbFast from '../public/projectImage/fast-pages.png'
+import thumbSnake from '../public/projectImage/snake.png'
+import thumbRest from '../public/projectImage/rest.png'
+import thumbRank from '../public/projectImage/heroRank.png'
+import thumbTest from '../public/projectImage/ai-test.png'
+
+
+
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -27,24 +39,14 @@ const ProfileImage = chakra(Image, {
 const Home = () => (
     
     <Container>
-
-      <Box
-        borderRadius="lg"
-        mb={6}
-        p={3}
-        textAlign="center"
-        bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
-        css={{ backdropFilter: 'blur(10px)' }}
-      >
-        Hello, I&apos;m desperate for a job plz hire me
-      </Box>
-
+      <br></br>
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
             Aryan Kumar
           </Heading>
           <p>Software Engineer / Full Stack Developer</p>
+          <p>B.S in Software Engineering from San Jose State University</p>
         </Box>
         <Box
           flexShrink={0}
@@ -63,7 +65,7 @@ const Home = () => (
             overflow="hidden"
           >
             <ProfileImage
-              src="/static/goofy.jpg"
+              src="/static/profile.png"
               alt="Profile image"
               borderRadius="full"
               width="100%"
@@ -79,32 +81,37 @@ const Home = () => (
           Work
         </Heading>
         <Paragraph>
-          
+
           <br></br>
-          Freelance Python Developer - Expert Witness Profiler LLC 
+          Freelance Python Developer @ Expert Witness Profiler LLC 
           
           <br></br>
             -designed a {' '}
           <NextLink href="https://github.com/akumar23/CourtScraper" passHref scroll={false}>
             <Link>python script</Link>
-          </NextLink> that automated data collection 
+          </NextLink> that automated data collection from online courts using beautiful soup and selenium 
+                       and used pandas to make data frames for that webscraped data
       
             <br></br>
             <br></br>
-            Some notable personal projects that I've worked on are:
+            Some notable projects that I've worked on are:
             <br></br> 
           <NextLink href="https://snake-webapp.herokuapp.com/" passHref scroll={false}>
             <Link>Snake Game Webapp</Link>
           </NextLink>
           <br></br>
           <NextLink href="https://youtu.be/dVwozVz11ho?t=78" passHref scroll={false}>
-            <Link>HAL: AI Chatbot</Link>
+            <Link>HAL: AI Chatbot Demo Video</Link>
+          </NextLink>
+          <br></br>
+          <NextLink href="https://youtu.be/FfhoEv2LEoI?t=17" passHref scroll={false}>
+            <Link>Fast Pages Demo Video</Link>
           </NextLink>
         </Paragraph>
         <Box align="center" my={4}>
           <NextLink href="/projects" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              Click here for more detail about my projects 
+              Click here to see more of my projects 
             </Button>
           </NextLink>
         </Box>
@@ -116,13 +123,13 @@ const Home = () => (
         </Heading>
         <Paragraph>
             <br></br>
-            Python, Java, JavaScript, Golang
+            Python, Java, JavaScript, Go
             <br></br>
             mySQL, Amazon AWS
             <br></br>
             Docker
             <br></br>
-            Springboot, Flask, next.js
+            Springboot, Flask, node/next.js
         </Paragraph>
       </Section>
 

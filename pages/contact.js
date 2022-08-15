@@ -12,26 +12,33 @@ import {
     Tab,
     Center
   } from '@chakra-ui/react'
-  import Paragraph from '../components/paragraph'
-  import Section from '../components/section'
-  import { ChevronRightIcon } from '@chakra-ui/icons'
-  import '../styles/Home.module.css'
 
-  const Contact = () => {
+import '../styles/Home.module.css'
+import NextLink from 'next/link'
+  
+const Contact = () => (
+    <Container>
 
-    <Container> 
-        
-        <Heading> Contact Me </Heading>
+        <br></br>
+  
         <Box display={{ md: 'flex' }}>
-            <form>
-                <input type="text" id="name" placeholder="Your Name" required />
-                <input type="email" id="email" placeholder="Your Email" required />
-                <textarea id="message" rows="4" placeholder='Enter your message here' ></textarea>
-                <button type="submit">Send</button>
-            </form>
+          <Box flexGrow={1}>
+            <Heading as="h3" variant="section-title">
+              Contact
+            </Heading>
+          </Box>
         </Box>
+        
+        <br></br>
+        Email: kumar.aryan@gmail.com 
+        <br></br>
 
+        <NextLink href="https://www.linkedin.com/in/aryan-kumar-9640b4150/" passHref scroll={false}>
+            <Link>LinkedIn</Link>
+          </NextLink>
+        
     </Container>
+)
 
-  }
-  export default Contact
+export default Contact
+export {getServerSideProps} from '../components/chakra'

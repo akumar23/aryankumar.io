@@ -37,7 +37,7 @@ export const Section = ({children, delay = 0}) => (
 
 const Projects = () => (
     <Container>
-        
+        <br></br>
         <Box
         borderRadius="lg"
         mb={6}
@@ -62,21 +62,24 @@ const Projects = () => (
         <Section>
           <GridItem id="hal" title="Hal" thumbnail={thumbHal}>
             AI chatbot for advising SJSU students
-            made with: Python, Flask, JavaScript, CSS and HTML
+            <br></br>
+            <b>made with:</b> Python, Flask, JavaScript, CSS and HTML
           </GridItem>
         </Section>
 
         <Section>
           <GridItem id="snake" title="Snake Game" thumbnail={thumbSnake}>
             Full stack webapp to let users play the game snake
-            made with: Python, JavaScript, Flask, mySQL, CSS and HTML
+            <br></br>
+            <b>made with:</b> Python, JavaScript, Flask, mySQL, CSS and HTML
           </GridItem>
         </Section>
 
         <Section>
           <GridItem id="rest" title="Django Rest API (work in progress)" thumbnail={thumbRest}>
             Django Framework to work with Rest APIs
-            made with: Python, Django, Rest API
+            <br></br>
+            <b>made with:</b> Python, Django, Rest API
           </GridItem>
         </Section>
 
@@ -95,7 +98,7 @@ const Projects = () => (
           <GridItem id="rank" title="Character Rank (work in progress)" thumbnail={thumbRank}>
             Full stack webapp where characters are ranked based on user's votes 
             <br></br>
-            made with: node/next.js, TypeScript, TRPC, Tailwind CSS, three.js and prisma
+            <b>made with:</b> node/next.js, TypeScript, TRPC, Tailwind CSS, three.js and prisma
           </GridItem>
         </Section>
       </SimpleGrid>
@@ -113,7 +116,7 @@ const Projects = () => (
           <GridItem id="fast" title="Fast Pages" thumbnail={thumbFast}>
             Online library system
             <br></br>
-            made with: Java, Springboot, AWS, Docker, RDS, mySQL, CSS (bootstrap), HTML
+            <b>made with:</b> Java, Springboot, AWS, Docker, RDS, mySQL, CSS (bootstrap), HTML
           </GridItem>
         </Section>
 
@@ -121,7 +124,7 @@ const Projects = () => (
           <GridItem id="aiTest" title="AI App Testing" thumbnail={thumbTest}>
             Aumoated App testing for an AI chat app
             <br></br>
-            made with: Java, Android Emulator
+            <b>made with:</b> Java, Android Emulator
           </GridItem>
         </Section>
 
