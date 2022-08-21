@@ -17,6 +17,7 @@ import thumbSnake from '../public/projectImage/snake.png'
 import thumbRest from '../public/projectImage/rest.png'
 import thumbRank from '../public/projectImage/heroRank.png'
 import thumbTest from '../public/projectImage/ai-test.png'
+import thumbUnity from '../public/projectImage/unity-logo.png'
 
 const StyledDiv = chakra(motion.div, {
   shouldForwardProp: prop => {
@@ -125,6 +126,25 @@ const Projects = () => (
             Aumoated App testing for an AI chat app
             <br></br>
             <b>made with:</b> Java, Android Emulator
+          </GridItem>
+        </Section>
+
+    </SimpleGrid>
+
+    <Box display={{ md: 'flex' }}>
+        <Box flexGrow={1}>
+          <Heading as="h3" variant="section-title">
+            VR
+          </Heading>
+        </Box>
+      </Box>
+
+    <SimpleGrid columns={[1, 1, 3]} gap={6}>
+      <Section>
+          <GridItem id="unity" title="Unity" thumbnail={thumbUnity}>
+            Unity General Setting Creation
+            <br></br>
+            <b>made with:</b> Unity 
           </GridItem>
         </Section>
 

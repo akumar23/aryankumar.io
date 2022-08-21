@@ -1,14 +1,8 @@
 import { 
     Container, 
-    Heading, 
-    SimpleGrid,  
+    Heading,  
     Box, 
-    useColorModeValue, 
-    chakra,
-    shouldForwardProp
   } from '@chakra-ui/react'
-  
-  
   
 const Snake = () => (
     <Container>
