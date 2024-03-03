@@ -84,7 +84,7 @@ const Home = () => (
       </h4>
 
       <Paragraph>
-        -designed and developed a webpage with next.js and typescript, tailwind and trpc that consumed
+        -designed, developed and deployed a webpage with next.js and typescript, tailwind and trpc that consumed
         the gitlab API to provide statistics for all projects that are in that
         gitlab instance
         <br></br>
