@@ -22,7 +22,8 @@
     "three": "^0.143.0",
     "three-bmfont-text": "^3.0.1",
     "three-text-geometry": "^0.0.0",
-    "three.js": "^0.77.1"
+    "three.js": "^0.77.1",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "eslint": "8.21.0",
