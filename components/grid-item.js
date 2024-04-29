@@ -11,6 +11,8 @@ export const GridItem = ({ children, id, title, thumbnail }) => (
             alt={title}
             className="grid-item-thumbnail"
             placeholder="blur"
+            height={500}
+            width={600}
           />
           <LinkOverlay href={`${id}`}>
             <Text mt={2} fontSize={20}>

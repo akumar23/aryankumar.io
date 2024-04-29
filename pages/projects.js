@@ -17,7 +17,10 @@ import thumbSnake from '../public/projectImage/snake.png'
 import thumbRest from '../public/projectImage/rest.png'
 import thumbRank from '../public/projectImage/heroRank.png'
 import thumbTest from '../public/projectImage/ai-test.png'
-import thumbUnity from '../public/projectImage/unity-logo.png'
+import thumbDigit from '../public/projectImage/digit-nn.png'
+import thumbRobot from '../public/projectImage/ai-robot.png'
+import thumbTrain from '../public/projectImage/model-train.png'
+import thumbBlog from '../public/projectImage/blog.png'
 
 const StyledDiv = chakra(motion.div, {
   shouldForwardProp: prop => {
@@ -61,7 +64,7 @@ const Projects = () => (
       <SimpleGrid columns={[1, 1, 3]} gap={6}>
 
         <Section>
-          <GridItem id="https://github.com/akumar23/Collision-Detection-Neural-Net" title="Collision Detection Neural Net" thumbnail={thumbHal}>
+          <GridItem id="https://github.com/akumar23/Collision-Detection-Neural-Net" title="Collision Detection Neural Net" thumbnail={thumbRobot}>
             Collision Detection Neural Net
             <br></br>
             <b>made with:</b> Python
@@ -69,7 +72,7 @@ const Projects = () => (
         </Section>
 
         <Section>
-          <GridItem id="https://github.com/akumar23/digit-predictor-neural-net" title="Digit Predictor Neural Net" thumbnail={thumbSnake}>
+          <GridItem id="https://github.com/akumar23/digit-predictor-neural-net" title="Digit Predictor Neural Net" thumbnail={thumbDigit}>
             A bare bones neural netork made with just numpy and matplotlib to predict a digit based on a picture of it
             <br></br>
             <b>made with:</b> Python
@@ -77,7 +80,7 @@ const Projects = () => (
         </Section>
 
         <Section>
-          <GridItem id="https://github.com/akumar23/hf-model-train" title="Huggingface Model Train Script" thumbnail={thumbRest}>
+          <GridItem id="https://github.com/akumar23/hf-model-train" title="Huggingface Model Train Script" thumbnail={thumbTrain}>
             A script that take inputs for a huggingface model and dataset then the script should train the model using that dataset.
             <br></br>
             <b>made with:</b> Python
@@ -104,7 +107,7 @@ const Projects = () => (
         </Section>
 
         <Section>
-          <GridItem id="https://fireblog-gray.vercel.app/" title="Fireblog" thumbnail={thumbRank}>
+          <GridItem id="https://fireblog-gray.vercel.app/" title="Fireblog" thumbnail={thumbBlog}>
             Full stack blog webapp where users can browse posts then login with a google account to write their own posts
             <br></br>
             <b>made with:</b> node/next.js, JavaScript, Tailwind CSS and firestore
