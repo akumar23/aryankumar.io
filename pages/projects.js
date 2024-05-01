@@ -21,6 +21,7 @@ import thumbDigit from '../public/projectImage/digit-nn.png'
 import thumbRobot from '../public/projectImage/ai-robot.png'
 import thumbTrain from '../public/projectImage/model-train.png'
 import thumbBlog from '../public/projectImage/blog.png'
+import thumbFlacon from '../public/projectImage/falcon.png'
 
 const StyledDiv = chakra(motion.div, {
   shouldForwardProp: prop => {
@@ -82,6 +83,14 @@ const Projects = () => (
         <Section>
           <GridItem id="https://github.com/akumar23/hf-model-train" title="Huggingface Model Train Script" thumbnail={thumbTrain}>
             A script that take inputs for a huggingface model and dataset then the script should train the model using that dataset.
+            <br></br>
+            <b>made with:</b> Python
+          </GridItem>
+        </Section>
+
+        <Section>
+          <GridItem id="https://huggingface.co/akumar23/mental-falcon-7b" title="Mental Falcon 7b" thumbnail={thumbFlacon}>
+            Fine tuned Huggingface model.
             <br></br>
             <b>made with:</b> Python
           </GridItem>
