@@ -29,13 +29,18 @@ export const ParticleContainer = forwardRef(({children}, ref) => (
             <Center><p>Software Engineer</p></Center>
             <br></br>
 
-            <NextLink href="/home" passHref scroll={false}>
-                <Center>
-                    <Button rightIcon={<ChevronRightIcon />} colorScheme="purple" variant= 'solid'>
-                        Enter the site
-                    </Button>
-                </Center>
-            </NextLink>
+            <Center>
+                <Button
+                    as={NextLink}
+                    href="/home"
+                    scroll={false}
+                    rightIcon={<ChevronRightIcon />}
+                    colorScheme="purple"
+                    variant="solid"
+                >
+                    Enter the site
+                </Button>
+            </Center>
             {children}
 
         </Box>

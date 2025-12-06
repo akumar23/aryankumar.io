@@ -1,5 +1,7 @@
 import Image from "next/image";
 import NextLink from "next/link";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 import {
   Link,
   Container,
@@ -17,70 +19,164 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionIcon,
-  AccordionPanel
+  AccordionPanel,
+  HStack,
+  IconButton,
+  Tooltip,
+  Text
 } from "@chakra-ui/react";
 import Section from "../components/section";
+import SkillsGrid from "../components/SkillsGrid";
+import MagneticButton from "../components/magnetic-button";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { IoLogoGithub } from "react-icons/io5";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Typewriter from 'typewriter-effect';
+import AnimatedHero, { AnimatedText, FadeInBox } from "../components/animated-hero";
+import StarfieldBackground from "../components/starfield-bg";
+import {
+  WelcomeBanner,
+  HitCounter,
+  AnimatedDivider,
+  BeveledContainer,
+  BlinkingText,
+  NeonGlowText,
+  NewBadge,
+  BestViewedBadge
+} from "../components/retro-decorations";
+
+// Dynamically import R3F components with SSR disabled
+const R3FParticles = dynamic(() => import('../components/r3f-particles'), {
+  ssr: false,
+  loading: () => null
+});
+
+const FloatingSkills3D = dynamic(() => import('../components/floating-skills-3d'), {
+  ssr: false,
+  loading: () => null
+});
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
 });
 
-const Home = () => (
-  <Container>
-    <br></br>
-    <Box display={{ md: "flex" }}>
-      <Box flexGrow={1}>
-        <Heading as='h2' size='lg' variant="page-title">
-          <Typewriter
-            options={{
-              strings: ['software engineer', 'full stack developer', 'ai engineer'],
-              autoStart: true,
-              loop: true,
-            }}
-          />
-        </Heading>
-        <br></br>
-        <p>B.S in Software Engineering from San Jose State University</p>
-        <p>Masters in CS from Arizona State University (in progress)</p>
-      </Box>
-      <Box
-        flexShrink={0}
-        mt={{ base: 4, md: 0 }}
-        ml={{ md: 6 }}
-        textAlign="center"
-      >
-        <Box
-          borderColor="whiteAlpha.800"
-          borderWidth={2}
-          borderStyle="solid"
-          w="100px"
-          h="100px"
-          display="inline-block"
-          borderRadius="full"
-          overflow="hidden"
-        >
-          <ProfileImage
-            src="/static/profile.png"
-            alt="Profile image"
-            borderRadius="full"
-            width="100%"
-            height="100%"
-          />
-        </Box>
-      </Box>
-    </Box>
+const Home = () => {
+  const colorMode = useColorModeValue('light', 'dark');
+  const [show3DSkills, setShow3DSkills] = useState(false);
+  const accentColor = useColorModeValue('#5a9a98', '#88ccca');
 
-    <br></br>
+  return (
+    <>
+      <StarfieldBackground />
+      <Container position="relative" zIndex={1}>
+        <WelcomeBanner title="🌟 WELCOME TO ARYAN'S HOMEPAGE 🌟" />
+
+        <HitCounter />
+
+        <AnimatedDivider />
+
+        <BeveledContainer mb={6}>
+          <Box display={{ md: "flex" }}>
+            <Box flexGrow={1}>
+              <Heading as='h2' size='lg' mb={4}>
+                <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
+                  <Typewriter
+                    options={{
+                      strings: ['software engineer', 'full stack developer', 'ai engineer'],
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </NeonGlowText>
+              </Heading>
+              <Text fontSize="md" mb={2}>
+                <BlinkingText>★</BlinkingText> B.S in Software Engineering from San Jose State University
+              </Text>
+              <Text fontSize="md">
+                <BlinkingText>★</BlinkingText> Masters in CS from Arizona State University <NewBadge />
+              </Text>
+            </Box>
+            <Box
+              flexShrink={0}
+              mt={{ base: 4, md: 0 }}
+              ml={{ md: 6 }}
+              textAlign="center"
+            >
+              <Box
+                border="4px solid"
+                borderColor={useColorModeValue('#FF00FF', '#00FFFF')}
+                w="100px"
+                h="100px"
+                display="inline-block"
+                borderRadius="0" // Square for 90s look
+                overflow="hidden"
+                boxShadow={`0 0 20px ${useColorModeValue('#FF00FF', '#00FFFF')}`}
+              >
+                <ProfileImage
+                  src="/static/profile.png"
+                  alt="Profile image"
+                  borderRadius="0"
+                  width={100}
+                  height={100}
+                  priority
+                />
+              </Box>
+            </Box>
+          </Box>
+        </BeveledContainer>
+
+    <AnimatedDivider />
 
     <Section delay={0.1}>
-      <Heading as="h3" variant="section-title">
-        Work
-      </Heading>
+      <BeveledContainer>
+        <HStack justify="space-between" align="center" mb={4}>
+          <Heading as="h3" variant="section-title" mb={0}>
+            <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
+              Skills <BlinkingText>⚡</BlinkingText>
+            </NeonGlowText>
+          </Heading>
+          <Tooltip
+            label={show3DSkills ? "Switch to Grid View" : "Switch to 3D View"}
+            placement="left"
+          >
+            <IconButton
+              icon={show3DSkills ? <ViewOffIcon /> : <ViewIcon />}
+              onClick={() => setShow3DSkills(!show3DSkills)}
+              variant="solid"
+              colorScheme="teal"
+              size="sm"
+              aria-label={show3DSkills ? "Switch to Grid View" : "Switch to 3D View"}
+            />
+          </Tooltip>
+        </HStack>
 
-      <Accordion>
+        {show3DSkills ? (
+          <Box
+            borderRadius="0"
+            overflow="hidden"
+            bg={useColorModeValue('rgba(192,192,192,0.5)', 'rgba(64,64,64,0.5)')}
+            border="4px ridge"
+            borderColor={useColorModeValue('#808080', '#FF00FF')}
+          >
+            <FloatingSkills3D height="600px" />
+          </Box>
+        ) : (
+          <SkillsGrid />
+        )}
+      </BeveledContainer>
+    </Section>
+
+    <AnimatedDivider />
+
+    <Section delay={0.2}>
+      <BeveledContainer>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#0000FF', '#FFFF00')}>
+            Work Experience <BlinkingText>💼</BlinkingText>
+          </NeonGlowText>
+        </Heading>
+
+        <Accordion allowToggle>
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -143,13 +239,13 @@ const Home = () => (
           <AccordionPanel pb={4}>
             <p>
               wrote a{" "}
-              <NextLink
+              <Link
+                as={NextLink}
                 href="https://github.com/akumar23/CourtScraper"
-                passHref
                 scroll={false}
               >
-                <Link>python script</Link>
-              </NextLink>{" "}
+                python script
+              </Link>{" "}
               that automated data collection from online courts using beautiful soup
               and selenium and used pandas to make data frames for that webscraped
               data
@@ -158,83 +254,81 @@ const Home = () => (
             </p>
           </AccordionPanel>
         </AccordionItem>
-      </Accordion>
+        </Accordion>
+      </BeveledContainer>
 
-      <br></br>
+      <AnimatedDivider />
 
-      <Heading as="h3" variant="section-title">
-        Projects
-      </Heading>
-      <NextLink
+      <BeveledContainer>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
+            Featured Projects <NewBadge />
+          </NeonGlowText>
+        </Heading>
+      <Link
+        as={NextLink}
         href="https://github.com/akumar23/digit-predictor-neural-net"
-        passHref
         scroll={false}
       >
-        <Link>Digit Predictor Neural Network</Link>
-      </NextLink>
+        Digit Predictor Neural Network
+      </Link>
       <br></br>
-      <NextLink
+      <Link
+        as={NextLink}
         href="https://github.com/akumar23/hf-model-train"
-        passHref
         scroll={false}
       >
-        <Link>Huggingface Model Train Script</Link>
-      </NextLink>
+        Huggingface Model Train Script
+      </Link>
       <br></br>
-      <NextLink
+      <Link
+        as={NextLink}
         href="https://comic-ranker.vercel.app/"
-        passHref
         scroll={false}
       >
-        <Link>Comic Ranker Full Stack Webapp</Link>
-      </NextLink>
+        Comic Ranker Full Stack Webapp
+      </Link>
 
-      <Box align="left" my={4}>
-        <NextLink href="/projects" passHref scroll={false}>
-          <Button rightIcon={<ChevronRightIcon />} colorScheme="teal" size="sm">
-            more projects
-          </Button>
-        </NextLink>
-      </Box>
+        <Box align="left" my={4}>
+          <MagneticButton
+            as={NextLink}
+            href="/projects"
+            scroll={false}
+            rightIcon={<ChevronRightIcon />}
+            colorScheme="teal"
+            size="md"
+          >
+            View All Projects
+          </MagneticButton>
+        </Box>
+      </BeveledContainer>
     </Section>
 
-    <br></br>
-
-    <Section delay={0.1}>
-      <Heading as="h3" variant="section-title">
-        Skills
-      </Heading>
-      <p>
-        TypeScript, Python, Java, Go
-        <br></br>
-        neural net and LLM development, vLLM/ollama deployment, huggingface
-        <br></br>
-        Kubernetes, Docker, Terraform
-        <br></br>
-        Keycloak, REST APIs, tailwind
-        <br></br>
-        mySQL, Amazon AWS
-        <br></br>
-        Springboot, Flask, node/next.js
-      </p>
-    </Section>
+    <AnimatedDivider />
 
     <Section delay={0.3}>
-      <List>
-        <ListItem>
-          <Link href="https://github.com/akumar23" target="_blank">
-            <Button
-              variant="ghost"
-              colorScheme="teal"
-              leftIcon={<IoLogoGithub />}
-            >
-              @akumar23
-            </Button>
-          </Link>
-        </ListItem>
-      </List>
+      <BeveledContainer textAlign="center">
+        <List styleType="none">
+          <ListItem>
+            <Link href="https://github.com/akumar23" target="_blank">
+              <MagneticButton
+                variant="solid"
+                colorScheme="teal"
+                leftIcon={<IoLogoGithub />}
+                size="lg"
+              >
+                <NeonGlowText>@akumar23 on GitHub</NeonGlowText>
+              </MagneticButton>
+            </Link>
+          </ListItem>
+        </List>
+      </BeveledContainer>
     </Section>
+
+    <BestViewedBadge />
   </Container>
-);
+  </>
+  );
+};
 export default Home;
 export { getServerSideProps } from "../components/chakra";

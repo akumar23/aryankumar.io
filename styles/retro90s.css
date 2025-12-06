@@ -1,0 +1,291 @@
+/* 90s Retro CSS Effects */
+
+/* Blinking text animation */
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* Marquee scrolling text */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  padding-left: 100%;
+}
+
+/* Beveled border effect (Windows 95 style) */
+.beveled-border {
+  border: 3px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  box-shadow:
+    inset 2px 2px 0px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.beveled-border-inset {
+  border: 3px solid;
+  border-color: #000000 #ffffff #ffffff #000000;
+  box-shadow:
+    inset 2px 2px 0px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+}
+
+/* Retro glow effect */
+.neon-glow {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+/* Rainbow text animation */
+@keyframes rainbow {
+  0% { color: #FF0000; }
+  16% { color: #FF7F00; }
+  33% { color: #FFFF00; }
+  50% { color: #00FF00; }
+  66% { color: #0000FF; }
+  83% { color: #8B00FF; }
+  100% { color: #FF0000; }
+}
+
+.rainbow-text {
+  animation: rainbow 3s linear infinite;
+  font-weight: bold;
+}
+
+/* Spinning animation (for GIF-like effects) */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning {
+  animation: spin 2s linear infinite;
+}
+
+/* Under construction tape effect */
+.construction-tape {
+  background: repeating-linear-gradient(
+    45deg,
+    #FFFF00,
+    #FFFF00 20px,
+    #000000 20px,
+    #000000 40px
+  );
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Retro button press effect */
+.retro-button {
+  border: 3px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  background: #C0C0C0;
+  box-shadow: 4px 4px 0px #000000;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.retro-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.retro-button:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* Starfield background */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+/* Hit counter style */
+.hit-counter {
+  font-family: 'Courier New', monospace;
+  background: #000000;
+  color: #00FF00;
+  padding: 5px 10px;
+  border: 2px solid #00FF00;
+  display: inline-block;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00FF00;
+}
+
+/* Retro table/container style */
+.retro-container {
+  border: 4px ridge #808080;
+  padding: 15px;
+  background: #C0C0C0;
+  box-shadow: 5px 5px 0px #000000;
+}
+
+/* GIF-like bouncing animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bouncing {
+  animation: bounce 1s infinite;
+}
+
+/* Retro gradient backgrounds */
+.retro-gradient-1 {
+  background: linear-gradient(to bottom, #00CED1, #FF1493);
+}
+
+.retro-gradient-2 {
+  background: linear-gradient(to right, #FF00FF, #00FFFF, #FFFF00);
+}
+
+/* Comic Sans alternative for browsers without it */
+@font-face {
+  font-family: 'RetroFont';
+  src: local('Comic Sans MS'), local('Comic Sans');
+}
+
+/* Pixel border effect */
+.pixel-border {
+  border: 4px solid;
+  border-image: repeating-linear-gradient(
+    45deg,
+    #FF00FF,
+    #FF00FF 10px,
+    #00FFFF 10px,
+    #00FFFF 20px
+  ) 4;
+}
+
+/* Retro scrollbar styling (for webkit browsers) */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #C0C0C0;
+  border: 2px solid #808080;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0000FF;
+  border: 2px solid #808080;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF00FF;
+}
+
+/* Animated divider */
+@keyframes slide {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+.animated-divider {
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #FF00FF,
+    #00FFFF 10px,
+    #FFFF00 20px
+  );
+  background-size: 200% 100%;
+  animation: slide 2s linear infinite;
+}
+
+/* Welcome banner style */
+.welcome-banner {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  background: #FF00FF;
+  color: #FFFF00;
+  border: 5px double #00FFFF;
+  box-shadow:
+    0 0 20px #FF00FF,
+    inset 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+/* Retro link hover effect */
+.retro-link {
+  color: #0000FF;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.retro-link:hover {
+  color: #FF00FF;
+  background: #FFFF00;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+/* Visitor counter style */
+.visitor-counter {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-digit {
+  background: #000000;
+  color: #00FF00;
+  border: 2px solid #00FF00;
+  padding: 5px 10px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 0 5px #00FF00;
+}

@@ -1,18 +1,25 @@
+@import './retro90s.css';
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  /* Starfield background will be added via component */
 }
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Retro cursor */
+body {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect width="16" height="16" fill="white" stroke="black" stroke-width="1"/></svg>'), auto;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +27,7 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: #00FF00;
+    background: #000033;
   }
 }

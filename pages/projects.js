@@ -1,15 +1,24 @@
-import { 
-  Container, 
-  Heading, 
-  SimpleGrid,  
-  Box, 
-  useColorModeValue, 
+import {
+  Container,
+  Heading,
+  SimpleGrid,
+  Box,
+  useColorModeValue,
   chakra,
   shouldForwardProp
 } from '@chakra-ui/react'
 
 import { GridItem } from '../components/grid-item'
 import {motion} from 'framer-motion'
+import StarfieldBackground from '../components/starfield-bg'
+import {
+  WelcomeBanner,
+  AnimatedDivider,
+  BeveledContainer,
+  NeonGlowText,
+  BlinkingText,
+  BestViewedBadge
+} from '../components/retro-decorations'
 
 import thumbHal from '../public/projectImage/hal.png'
 import thumbFast from '../public/projectImage/fast-pages.png'
@@ -41,26 +50,28 @@ export const Section = ({children, delay = 0}) => (
 )
 
 const Projects = () => (
-    <Container>
-        <br></br>
-        <Box
-        borderRadius="lg"
-        mb={6}
-        p={3}
-        textAlign="center"
-        bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
-        css={{ backdropFilter: 'blur(10px)' }}
-      >
-        Here's more detail about the projects I've worked on
-      </Box>
+  <>
+    <StarfieldBackground />
+    <Container position="relative" zIndex={1}>
+      <WelcomeBanner title="🚀 MY AWESOME PROJECTS 🚀" />
 
-      <Box display={{ md: 'flex' }}>
-        <Box flexGrow={1}>
-          <Heading as="h3" variant="section-title">
-            AI Projects
-          </Heading>
-        </Box>
-      </Box>
+      <BeveledContainer
+        mb={6}
+        textAlign="center"
+      >
+        <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
+          Here's more detail about the projects I've worked on <BlinkingText>✨</BlinkingText>
+        </NeonGlowText>
+      </BeveledContainer>
+
+      <AnimatedDivider />
+
+      <BeveledContainer mb={6}>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
+            AI Projects <BlinkingText>🤖</BlinkingText>
+          </NeonGlowText>
+        </Heading>
 
       <SimpleGrid columns={[1, 1, 3]} gap={6}>
 
@@ -97,14 +108,16 @@ const Projects = () => (
         </Section>
 
       </SimpleGrid>
+      </BeveledContainer>
 
-      <Box display={{ md: 'flex' }}>
-        <Box flexGrow={1}>
-          <Heading as="h3" variant="section-title">
-            Full Stack Projects
-          </Heading>
-        </Box>
-      </Box>
+      <AnimatedDivider />
+
+      <BeveledContainer mb={6}>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#0000FF', '#FFFF00')}>
+            Full Stack Projects <BlinkingText>💻</BlinkingText>
+          </NeonGlowText>
+        </Heading>
 
       <SimpleGrid columns={[1, 1, 3]} gap={6}>
         <Section>
@@ -124,14 +137,16 @@ const Projects = () => (
         </Section>
 
       </SimpleGrid>
+      </BeveledContainer>
 
-      <Box display={{ md: 'flex' }}>
-        <Box flexGrow={1}>
-          <Heading as="h3" variant="section-title">
-            Python Projects
-          </Heading>
-        </Box>
-      </Box>
+      <AnimatedDivider />
+
+      <BeveledContainer mb={6}>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
+            Python Projects <BlinkingText>🐍</BlinkingText>
+          </NeonGlowText>
+        </Heading>
 
       <SimpleGrid columns={[1, 1, 3]} gap={6}>
 
@@ -160,16 +175,18 @@ const Projects = () => (
         </Section>
 
       </SimpleGrid>
+      </BeveledContainer>
 
-      <Box display={{ md: 'flex' }}>
-        <Box flexGrow={1}>
-          <Heading as="h3" variant="section-title">
-            Java Projects
-          </Heading>
-        </Box>
-      </Box>
+      <AnimatedDivider />
 
-    <SimpleGrid columns={[1, 1, 3]} gap={6}>
+      <BeveledContainer mb={6}>
+        <Heading as="h3" variant="section-title">
+          <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
+            Java Projects <BlinkingText>☕</BlinkingText>
+          </NeonGlowText>
+        </Heading>
+
+      <SimpleGrid columns={[1, 1, 3]} gap={6}>
       <Section>
           <GridItem id="https://github.com/jawnhoang/FastPages" title="Fast Pages" thumbnail={thumbFast}>
             Online library system
@@ -186,9 +203,12 @@ const Projects = () => (
           </GridItem>
         </Section>
 
-    </SimpleGrid>
+      </SimpleGrid>
+      </BeveledContainer>
 
+      <BestViewedBadge />
     </Container>
+  </>
 )
 export default Projects
 export {getServerSideProps} from '../components/chakra'
