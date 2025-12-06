@@ -89,11 +89,8 @@ const Home = () => {
                   />
                 </NeonGlowText>
               </Heading>
-              <Text fontSize="md" mb={2}>
-                <BlinkingText>★</BlinkingText> B.S in Software Engineering from San Jose State University
-              </Text>
               <Text fontSize="md">
-                <BlinkingText>★</BlinkingText> Masters in CS from Arizona State University <NewBadge />
+                <BlinkingText>★</BlinkingText> B.S in Software Engineering from San Jose State University
               </Text>
             </Box>
             <Box

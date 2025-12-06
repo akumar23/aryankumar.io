@@ -1,15 +1,18 @@
+import { useState } from 'react'
 import {
   Container,
   Heading,
   SimpleGrid,
   Box,
+  Button,
+  Collapse,
   useColorModeValue,
   chakra,
   shouldForwardProp
 } from '@chakra-ui/react'
 
-import { GridItem } from '../components/grid-item'
-import {motion} from 'framer-motion'
+import { GridItem, FeaturedGridItem } from '../components/grid-item'
+import { motion, AnimatePresence } from 'framer-motion'
 import StarfieldBackground from '../components/starfield-bg'
 import {
   WelcomeBanner,
@@ -49,166 +52,242 @@ export const Section = ({children, delay = 0}) => (
   </StyledDiv>
 )
 
-const Projects = () => (
-  <>
-    <StarfieldBackground />
-    <Container position="relative" zIndex={1}>
-      <WelcomeBanner title="🚀 MY AWESOME PROJECTS 🚀" />
+const SeeMoreButton = ({ isExpanded, onClick, count }) => {
+  const buttonBg = useColorModeValue('purple.500', 'cyan.500')
+  const buttonHoverBg = useColorModeValue('purple.600', 'cyan.600')
 
-      <BeveledContainer
-        mb={6}
-        textAlign="center"
-      >
-        <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
-          Here's more detail about the projects I've worked on <BlinkingText>✨</BlinkingText>
-        </NeonGlowText>
-      </BeveledContainer>
+  return (
+    <Button
+      onClick={onClick}
+      bg={buttonBg}
+      color="white"
+      size="md"
+      mt={6}
+      px={8}
+      borderRadius="full"
+      _hover={{ bg: buttonHoverBg, transform: 'scale(1.05)' }}
+      transition="all 0.2s"
+      leftIcon={isExpanded ? null : <span>+</span>}
+    >
+      {isExpanded ? 'Show Less' : `See ${count} More Project${count > 1 ? 's' : ''}`}
+    </Button>
+  )
+}
 
-      <AnimatedDivider />
+const Projects = () => {
+  const [expandedSections, setExpandedSections] = useState({
+    ai: false,
+    fullstack: false,
+    python: false,
+    java: false
+  })
 
-      <BeveledContainer mb={6}>
-        <Heading as="h3" variant="section-title">
-          <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
-            AI Projects <BlinkingText>🤖</BlinkingText>
-          </NeonGlowText>
-        </Heading>
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }))
+  }
 
-      <SimpleGrid columns={[1, 1, 3]} gap={6}>
+  return (
+    <>
+      <StarfieldBackground />
+      <Container position="relative" zIndex={1}>
+        <WelcomeBanner title="MY AWESOME PROJECTS" />
 
-        <Section>
-          <GridItem id="https://github.com/akumar23/Collision-Detection-Neural-Net" title="Collision Detection Neural Net" thumbnail={thumbRobot}>
-            Autonomous navigation system using neural networks to enable robots to avoid obstacles in real-time through sensor-based decision-making. Achieved 99% collision avoidance success rate across 100+ test scenarios.
-            <br></br>
-            <b>made with:</b> Python, scikit-learn, Pygame, NumPy
-          </GridItem>
-        </Section>
-
-        <Section>
-          <GridItem id="https://github.com/akumar23/digit-predictor-neural-net" title="Digit Predictor Neural Net" thumbnail={thumbDigit}>
-            Handwritten digit recognition neural network built from scratch using only NumPy and Matplotlib, demonstrating fundamental deep learning concepts without high-level frameworks. Implements backpropagation and gradient descent for image classification.
-            <br></br>
-            <b>made with:</b> Python
-          </GridItem>
-        </Section>
-
-        <Section>
-          <GridItem id="https://github.com/akumar23/hf-model-train" title="LLM Fine-Tuning Toolkit" thumbnail={thumbTrain}>
-            Command-line toolkit that democratizes billion-parameter language model fine-tuning for consumer hardware through LoRA and 4-bit quantization, reducing memory requirements by 90%. Enables training models like Mistral-7B and LLaMA-2 on 12-16GB GPUs with built-in experiment tracking and checkpoint resumption.
-            <br></br>
-            <b>made with:</b> Python, PyTorch, HuggingFace Transformers, PEFT, LoRA
-          </GridItem>
-        </Section>
-
-        <Section>
-          <GridItem id="https://huggingface.co/akumar23/mental-falcon-7b" title="Mental Falcon 7b" thumbnail={thumbFlacon}>
-            Fine-tuned 7-billion parameter language model specialized for mental health support and wellness conversations. Built on Falcon-7B architecture and optimized using parameter-efficient fine-tuning techniques.
-            <br></br>
-            <b>made with:</b> Python
-          </GridItem>
-        </Section>
-
-      </SimpleGrid>
-      </BeveledContainer>
-
-      <AnimatedDivider />
-
-      <BeveledContainer mb={6}>
-        <Heading as="h3" variant="section-title">
-          <NeonGlowText color={useColorModeValue('#0000FF', '#FFFF00')}>
-            Full Stack Projects <BlinkingText>💻</BlinkingText>
-          </NeonGlowText>
-        </Heading>
-
-      <SimpleGrid columns={[1, 1, 3]} gap={6}>
-        <Section>
-          <GridItem id="https://comic-ranker.vercel.app/" title="Character Rank (work in progress)" thumbnail={thumbRank}>
-            Interactive ranking platform where users vote on their favorite characters through an Elo-based ranking system with real-time updates. Features 3D character visualization using Three.js and serverless backend architecture with type-safe tRPC APIs. 
-            <br></br>
-            <b>made with:</b> node/next.js, TypeScript, TRPC, Tailwind CSS, three.js and firestore
-          </GridItem>
-        </Section>
-
-        <Section>
-          <GridItem id="https://fireblog-gray.vercel.app/" title="Fireblog" thumbnail={thumbBlog}>
-            Full-stack blogging platform with Google OAuth authentication enabling users to discover, read, and publish articles. Features real-time data synchronization, rich text editing, and responsive design for seamless content creation.
-            <br></br>
-            <b>made with:</b> node/next.js, JavaScript, Tailwind CSS and firestore
-          </GridItem>
-        </Section>
-
-      </SimpleGrid>
-      </BeveledContainer>
-
-      <AnimatedDivider />
-
-      <BeveledContainer mb={6}>
-        <Heading as="h3" variant="section-title">
+        <BeveledContainer
+          mb={6}
+          textAlign="center"
+        >
           <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
-            Python Projects <BlinkingText>🐍</BlinkingText>
+            Here's more detail about the projects I've worked on <BlinkingText>✨</BlinkingText>
           </NeonGlowText>
-        </Heading>
+        </BeveledContainer>
 
-      <SimpleGrid columns={[1, 1, 3]} gap={6}>
+        <AnimatedDivider />
 
-        <Section>
-          <GridItem id="https://github.com/akumar23/HAL-AI-AdvisorBot" title="Hal" thumbnail={thumbHal}>
-            AI-powered academic advising chatbot designed to help San Jose State University students navigate course selection, degree requirements, and academic planning. Provides instant, personalized guidance through natural language conversations.
-            <br></br>
-            <b>made with:</b> Python, Flask, JavaScript, CSS and HTML
-          </GridItem>
-        </Section>
+        {/* AI Projects Section */}
+        <BeveledContainer mb={6}>
+          <Heading as="h3" variant="section-title">
+            <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
+              AI Projects <BlinkingText>🤖</BlinkingText>
+            </NeonGlowText>
+          </Heading>
 
-        <Section>
-          <GridItem id="https://github.com/akumar23/SnakeGame" title="Snake Game" thumbnail={thumbSnake}>
-            Browser-based Snake game with user authentication, persistent high score tracking, and real-time leaderboards. Combines classic arcade gameplay with modern full-stack architecture for competitive multiplayer experience.
-            <br></br>
-            <b>made with:</b> Python, JavaScript, Flask, mySQL, CSS and HTML
-          </GridItem>
-        </Section>
+          <Section>
+            <FeaturedGridItem id="https://github.com/akumar23/hf-model-train" title="LLM Fine-Tuning Toolkit" thumbnail={thumbTrain}>
+              Command-line toolkit that democratizes billion-parameter language model fine-tuning for consumer hardware through LoRA and 4-bit quantization, reducing memory requirements by 90%. Enables training models like Mistral-7B and LLaMA-2 on 12-16GB GPUs with built-in experiment tracking and checkpoint resumption.
+              <br /><br />
+              <b>Made with:</b> Python, PyTorch, HuggingFace Transformers, PEFT, LoRA
+            </FeaturedGridItem>
+          </Section>
 
-        <Section>
-          <GridItem id="https://github.com/akumar23/django-rest" title="Django Rest API (work in progress)" thumbnail={thumbRest}>
-            RESTful API framework demonstrating enterprise-grade backend architecture with Django, featuring CRUD operations, authentication, and database modeling. Showcases best practices for scalable API design and documentation.
-            <br></br>
-            <b>made with:</b> Python, Django, Rest API
-          </GridItem>
-        </Section>
+          <Collapse in={expandedSections.ai} animateOpacity>
+            <SimpleGrid columns={[1, 1, 2]} gap={6} mt={6}>
+              <Section delay={0.1}>
+                <GridItem id="https://github.com/akumar23/Collision-Detection-Neural-Net" title="Collision Detection Neural Net" thumbnail={thumbRobot}>
+                  Autonomous navigation system using neural networks to enable robots to avoid obstacles in real-time through sensor-based decision-making. Achieved 99% collision avoidance success rate across 100+ test scenarios.
+                  <br /><br />
+                  <b>Made with:</b> Python, scikit-learn, Pygame, NumPy
+                </GridItem>
+              </Section>
 
-      </SimpleGrid>
-      </BeveledContainer>
+              <Section delay={0.2}>
+                <GridItem id="https://github.com/akumar23/digit-predictor-neural-net" title="Digit Predictor Neural Net" thumbnail={thumbDigit}>
+                  Handwritten digit recognition neural network built from scratch using only NumPy and Matplotlib, demonstrating fundamental deep learning concepts without high-level frameworks.
+                  <br /><br />
+                  <b>Made with:</b> Python, NumPy, Matplotlib
+                </GridItem>
+              </Section>
 
-      <AnimatedDivider />
+              <Section delay={0.3}>
+                <GridItem id="https://huggingface.co/akumar23/mental-falcon-7b" title="Mental Falcon 7b" thumbnail={thumbFlacon}>
+                  Fine-tuned 7-billion parameter language model specialized for mental health support and wellness conversations. Built on Falcon-7B architecture and optimized using parameter-efficient fine-tuning techniques.
+                  <br /><br />
+                  <b>Made with:</b> Python, HuggingFace, PEFT
+                </GridItem>
+              </Section>
+            </SimpleGrid>
+          </Collapse>
 
-      <BeveledContainer mb={6}>
-        <Heading as="h3" variant="section-title">
-          <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
-            Java Projects <BlinkingText>☕</BlinkingText>
-          </NeonGlowText>
-        </Heading>
+          <Box textAlign="center">
+            <SeeMoreButton
+              isExpanded={expandedSections.ai}
+              onClick={() => toggleSection('ai')}
+              count={3}
+            />
+          </Box>
+        </BeveledContainer>
 
-      <SimpleGrid columns={[1, 1, 3]} gap={6}>
-      <Section>
-          <GridItem id="https://github.com/jawnhoang/FastPages" title="Fast Pages" thumbnail={thumbFast}>
-            Cloud-native library management system built with Spring Boot and deployed on AWS infrastructure. Features containerized deployment with Docker, RDS database integration, and responsive web interface for catalog management and user transactions.
-            <br></br>
-            <b>made with:</b> Java, Springboot, AWS, Docker, RDS, mySQL, CSS (bootstrap), HTML
-          </GridItem>
-        </Section>
+        <AnimatedDivider />
 
-        <Section>
-          <GridItem id="https://github.com/akumar23/automated-AI-app-testing" title="AI App Testing" thumbnail={thumbTest}>
-            Automated testing framework for Android AI chat applications using emulator-based UI testing and validation. Streamlines quality assurance by programmatically simulating user interactions and verifying conversational AI responses.
-            <br></br>
-            <b>made with:</b> Java, Android Emulator
-          </GridItem>
-        </Section>
+        {/* Full Stack Projects Section */}
+        <BeveledContainer mb={6}>
+          <Heading as="h3" variant="section-title">
+            <NeonGlowText color={useColorModeValue('#0000FF', '#FFFF00')}>
+              Full Stack Projects <BlinkingText>💻</BlinkingText>
+            </NeonGlowText>
+          </Heading>
 
-      </SimpleGrid>
-      </BeveledContainer>
+          <Section>
+            <FeaturedGridItem id="https://comic-ranker.vercel.app/" title="Character Rank" thumbnail={thumbRank}>
+              Interactive ranking platform where users vote on their favorite characters through an Elo-based ranking system with real-time updates. Features 3D character visualization using Three.js and serverless backend architecture with type-safe tRPC APIs.
+              <br /><br />
+              <b>Made with:</b> Next.js, TypeScript, tRPC, Tailwind CSS, Three.js, Firestore
+            </FeaturedGridItem>
+          </Section>
 
-      <BestViewedBadge />
-    </Container>
-  </>
-)
+          <Collapse in={expandedSections.fullstack} animateOpacity>
+            <SimpleGrid columns={[1, 1, 1]} gap={6} mt={6} maxW="600px" mx="auto">
+              <Section delay={0.1}>
+                <GridItem id="https://fireblog-gray.vercel.app/" title="Fireblog" thumbnail={thumbBlog}>
+                  Full-stack blogging platform with Google OAuth authentication enabling users to discover, read, and publish articles. Features real-time data synchronization, rich text editing, and responsive design.
+                  <br /><br />
+                  <b>Made with:</b> Next.js, JavaScript, Tailwind CSS, Firestore
+                </GridItem>
+              </Section>
+            </SimpleGrid>
+          </Collapse>
+
+          <Box textAlign="center">
+            <SeeMoreButton
+              isExpanded={expandedSections.fullstack}
+              onClick={() => toggleSection('fullstack')}
+              count={1}
+            />
+          </Box>
+        </BeveledContainer>
+
+        <AnimatedDivider />
+
+        {/* Python Projects Section */}
+        <BeveledContainer mb={6}>
+          <Heading as="h3" variant="section-title">
+            <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
+              Python Projects <BlinkingText>🐍</BlinkingText>
+            </NeonGlowText>
+          </Heading>
+
+          <Section>
+            <FeaturedGridItem id="https://github.com/akumar23/HAL-AI-AdvisorBot" title="HAL - AI Academic Advisor" thumbnail={thumbHal}>
+              AI-powered academic advising chatbot designed to help San Jose State University students navigate course selection, degree requirements, and academic planning. Provides instant, personalized guidance through natural language conversations.
+              <br /><br />
+              <b>Made with:</b> Python, Flask, JavaScript, CSS, HTML
+            </FeaturedGridItem>
+          </Section>
+
+          <Collapse in={expandedSections.python} animateOpacity>
+            <SimpleGrid columns={[1, 1, 2]} gap={6} mt={6}>
+              <Section delay={0.1}>
+                <GridItem id="https://github.com/akumar23/SnakeGame" title="Snake Game" thumbnail={thumbSnake}>
+                  Browser-based Snake game with user authentication, persistent high score tracking, and real-time leaderboards. Combines classic arcade gameplay with modern full-stack architecture.
+                  <br /><br />
+                  <b>Made with:</b> Python, Flask, JavaScript, MySQL
+                </GridItem>
+              </Section>
+
+              <Section delay={0.2}>
+                <GridItem id="https://github.com/akumar23/django-rest" title="Django REST API" thumbnail={thumbRest}>
+                  RESTful API framework demonstrating enterprise-grade backend architecture with Django, featuring CRUD operations, authentication, and database modeling.
+                  <br /><br />
+                  <b>Made with:</b> Python, Django, REST Framework
+                </GridItem>
+              </Section>
+            </SimpleGrid>
+          </Collapse>
+
+          <Box textAlign="center">
+            <SeeMoreButton
+              isExpanded={expandedSections.python}
+              onClick={() => toggleSection('python')}
+              count={2}
+            />
+          </Box>
+        </BeveledContainer>
+
+        <AnimatedDivider />
+
+        {/* Java Projects Section */}
+        <BeveledContainer mb={6}>
+          <Heading as="h3" variant="section-title">
+            <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
+              Java Projects <BlinkingText>☕</BlinkingText>
+            </NeonGlowText>
+          </Heading>
+
+          <Section>
+            <FeaturedGridItem id="https://github.com/jawnhoang/FastPages" title="Fast Pages" thumbnail={thumbFast}>
+              Cloud-native library management system built with Spring Boot and deployed on AWS infrastructure. Features containerized deployment with Docker, RDS database integration, and responsive web interface for catalog management and user transactions.
+              <br /><br />
+              <b>Made with:</b> Java, Spring Boot, AWS, Docker, RDS, MySQL
+            </FeaturedGridItem>
+          </Section>
+
+          <Collapse in={expandedSections.java} animateOpacity>
+            <SimpleGrid columns={[1, 1, 1]} gap={6} mt={6} maxW="600px" mx="auto">
+              <Section delay={0.1}>
+                <GridItem id="https://github.com/akumar23/automated-AI-app-testing" title="AI App Testing Framework" thumbnail={thumbTest}>
+                  Automated testing framework for Android AI chat applications using emulator-based UI testing and validation. Streamlines quality assurance by programmatically simulating user interactions.
+                  <br /><br />
+                  <b>Made with:</b> Java, Android Emulator
+                </GridItem>
+              </Section>
+            </SimpleGrid>
+          </Collapse>
+
+          <Box textAlign="center">
+            <SeeMoreButton
+              isExpanded={expandedSections.java}
+              onClick={() => toggleSection('java')}
+              count={1}
+            />
+          </Box>
+        </BeveledContainer>
+
+        <BestViewedBadge />
+      </Container>
+    </>
+  )
+}
 export default Projects
 export {getServerSideProps} from '../components/chakra'
