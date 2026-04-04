@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import NextLink from 'next/link'
 import {
   Box,
@@ -17,16 +16,7 @@ import { motion } from 'framer-motion'
 import Section, { FullSection } from '../components/section'
 import HeroSection from '../components/hero-section'
 import SketchyButton from '../components/sketchy-button'
-
-// Dynamically import 3D components with SSR disabled
-const FloatingSkills3D = dynamic(() => import('../components/floating-skills-3d'), {
-  ssr: false,
-  loading: () => (
-    <Box h="400px" display="flex" alignItems="center" justifyContent="center">
-      <Text color="neutral.500" fontFamily="mono" fontSize="sm">loading...</Text>
-    </Box>
-  )
-})
+import SkillsGrid from '../components/SkillsGrid'
 
 const MotionBox = motion(Box)
 
@@ -216,18 +206,7 @@ const Home = () => {
             description="Go, Python, TypeScript, Kubernetes, LiteLLM, Helm, RAG, PyTorch, Next.js, FastAPI, Redis, PGVector, Terraform, Grafana."
           />
           <Section>
-            <Box
-              borderRadius="xl"
-              overflow="hidden"
-              border="1px solid"
-              borderColor={useColorModeValue('neutral.200', 'rgba(255,255,255,0.07)')}
-              boxShadow={useColorModeValue(
-                '0 20px 50px rgba(0,0,0,0.08)',
-                '0 20px 50px rgba(0,0,0,0.4)'
-              )}
-            >
-              <FloatingSkills3D height="500px" />
-            </Box>
+            <SkillsGrid />
           </Section>
         </Container>
       </FullSection>
