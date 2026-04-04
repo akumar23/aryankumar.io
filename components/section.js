@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { chakra, shouldForwardProp } from '@chakra-ui/react'
+import { chakra, shouldForwardProp, Box } from '@chakra-ui/react'
 
 const StyledDiv = chakra(motion.div, {
   shouldForwardProp: prop => {
@@ -7,23 +7,47 @@ const StyledDiv = chakra(motion.div, {
   }
 })
 
-const Section = ({ children, delay = 0 }) => {
+const Section = ({ children, delay = 0, ...props }) => {
   const prefersReducedMotion = useReducedMotion()
 
   return (
     <StyledDiv
-      initial={{ y: prefersReducedMotion ? 0 : 30, opacity: 0 }}
+      initial={{ y: prefersReducedMotion ? 0 : 40, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '-100px' }}
       transition={{
-        duration: prefersReducedMotion ? 0.01 : 0.6,
+        duration: prefersReducedMotion ? 0.01 : 0.8,
         delay,
-        ease: 'easeOut'
+        ease: [0.22, 1, 0.36, 1]
       }}
-      mb={6}
+      mb={8}
+      {...props}
     >
       {children}
     </StyledDiv>
+  )
+}
+
+// Full-width section variant
+export const FullSection = ({ children, delay = 0, bg, ...props }) => {
+  const prefersReducedMotion = useReducedMotion()
+
+  return (
+    <Box
+      as={motion.section}
+      initial={{ opacity: prefersReducedMotion ? 1 : 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: prefersReducedMotion ? 0.01 : 0.6,
+        delay
+      }}
+      py={{ base: 16, md: 24 }}
+      bg={bg}
+      {...props}
+    >
+      {children}
+    </Box>
   )
 }
 

@@ -4,31 +4,31 @@ import { Float, Text, OrbitControls, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { useColorModeValue } from '@chakra-ui/react'
 
-// Skill data organized by category with colors
+// Skill data organized by category with colors matching new theme
 const SKILLS_DATA = {
   languages: {
     skills: ['TypeScript', 'Python', 'Java', 'Go', 'SQL', 'JS'],
-    color: '#3178C6', // TypeScript blue
+    color: '#8B5CF6', // Primary violet
     geometry: 'box'
   },
   frontend: {
     skills: ['React', 'Next.js', 'Tailwind', 'Chakra'],
-    color: '#61DAFB', // React cyan
+    color: '#A78BFA', // Violet 400
     geometry: 'sphere'
   },
   backend: {
     skills: ['Node.js', 'Flask', 'Django', 'Spring'],
-    color: '#6DB33F', // Spring green
+    color: '#F97316', // Secondary coral
     geometry: 'octahedron'
   },
   devops: {
     skills: ['Docker', 'K8s', 'AWS', 'Terraform'],
-    color: '#326CE5', // Kubernetes blue
+    color: '#7C3AED', // Violet 600
     geometry: 'icosahedron'
   },
   ai: {
     skills: ['PyTorch', 'HF', 'LLM', 'ML'],
-    color: '#FF6F00', // AI orange
+    color: '#FB923C', // Coral 400
     geometry: 'tetrahedron'
   }
 }
@@ -218,13 +218,13 @@ const SkillsScene = ({ theme }) => {
       {/* Lighting */}
       <ambientLight intensity={theme === 'dark' ? 0.3 : 0.5} />
       <pointLight position={[10, 10, 10]} intensity={theme === 'dark' ? 0.8 : 1} />
-      <pointLight position={[-10, -10, -10]} intensity={theme === 'dark' ? 0.3 : 0.5} color="#88ccca" />
+      <pointLight position={[-10, -10, -10]} intensity={theme === 'dark' ? 0.3 : 0.5} color="#8B5CF6" />
       <spotLight
         position={[0, 10, 0]}
         intensity={theme === 'dark' ? 0.5 : 0.3}
         angle={0.6}
         penumbra={1}
-        color="#88ccca"
+        color="#A78BFA"
       />
 
       {/* Skills group */}

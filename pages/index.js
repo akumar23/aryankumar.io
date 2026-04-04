@@ -1,331 +1,321 @@
-import Image from "next/image";
-import NextLink from "next/link";
-import dynamic from "next/dynamic";
-import { useState } from "react";
+import dynamic from 'next/dynamic'
+import NextLink from 'next/link'
 import {
-  Link,
+  Box,
   Container,
   Heading,
-  Box,
+  Text,
   SimpleGrid,
-  Button,
-  List,
-  ListItem,
-  useColorModeValue,
-  chakra,
-  Tab,
-  Center,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
+  VStack,
   HStack,
-  IconButton,
-  Tooltip,
-  Text
-} from "@chakra-ui/react";
-import Section from "../components/section";
-import SkillsGrid from "../components/SkillsGrid";
-import MagneticButton from "../components/magnetic-button";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { IoLogoGithub } from "react-icons/io5";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import Typewriter from 'typewriter-effect';
-import AnimatedHero, { AnimatedText, FadeInBox } from "../components/animated-hero";
-import StarfieldBackground from "../components/starfield-bg";
-import {
-  WelcomeBanner,
-  HitCounter,
-  AnimatedDivider,
-  BeveledContainer,
-  BlinkingText,
-  NeonGlowText,
-  NewBadge,
-  BestViewedBadge
-} from "../components/retro-decorations";
+  useColorModeValue,
+  Icon
+} from '@chakra-ui/react'
+import { IoLogoGithub, IoBriefcase, IoRocket } from 'react-icons/io5'
+import { motion } from 'framer-motion'
 
-// Dynamically import R3F components with SSR disabled
-const R3FParticles = dynamic(() => import('../components/r3f-particles'), {
-  ssr: false,
-  loading: () => null
-});
+import Section, { FullSection } from '../components/section'
+import HeroSection from '../components/hero-section'
+import SketchyButton from '../components/sketchy-button'
 
+// Dynamically import 3D components with SSR disabled
 const FloatingSkills3D = dynamic(() => import('../components/floating-skills-3d'), {
   ssr: false,
-  loading: () => null
-});
+  loading: () => (
+    <Box h="400px" display="flex" alignItems="center" justifyContent="center">
+      <Text color="neutral.500" fontFamily="mono" fontSize="sm">loading...</Text>
+    </Box>
+  )
+})
 
-const ProfileImage = chakra(Image, {
-  shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
-});
+const MotionBox = motion(Box)
 
-const Home = () => {
-  const colorMode = useColorModeValue('light', 'dark');
-  const [show3DSkills, setShow3DSkills] = useState(false);
-  const accentColor = useColorModeValue('#5a9a98', '#88ccca');
+const ExperienceCard = ({ phase, title, company, period, description, isLatest }) => {
+  const cardBg = useColorModeValue('white', 'rgba(255,255,255,0.02)')
+  const cardHoverBg = useColorModeValue('neutral.50', 'rgba(255,255,255,0.04)')
+  const borderColor = useColorModeValue('neutral.200', 'rgba(255,255,255,0.07)')
+  const textColor = useColorModeValue('neutral.900', 'neutral.50')
+  const descriptionColor = useColorModeValue('neutral.600', 'neutral.400')
+  const mutedColor = useColorModeValue('neutral.500', 'neutral.500')
 
   return (
-    <>
-      <StarfieldBackground />
-      <Container position="relative" zIndex={1}>
-        <WelcomeBanner title="🌟 WELCOME TO ARYAN'S HOMEPAGE 🌟" />
+    <MotionBox
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      h="full"
+    >
+      <Box
+        p={6}
+        bg={cardBg}
+        borderRadius="lg"
+        border="1px solid"
+        borderColor={borderColor}
+        borderLeft="3px solid"
+        borderLeftColor={isLatest ? 'primary.500' : borderColor}
+        position="relative"
+        h="full"
+        _hover={{
+          bg: cardHoverBg,
+          transform: 'translateY(-2px)',
+          boxShadow: useColorModeValue(
+            '0 8px 30px rgba(0,0,0,0.06)',
+            '0 8px 30px rgba(0,0,0,0.3)'
+          )
+        }}
+        transition="all 0.2s ease"
+      >
+        <VStack align="start" spacing={4} h="full">
+          {/* Phase label */}
+          <Text
+            fontFamily="mono"
+            fontSize="xs"
+            color="primary.500"
+            opacity={0.7}
+            letterSpacing="wide"
+          >
+            // {phase}
+          </Text>
 
-        <HitCounter />
-
-        <AnimatedDivider />
-
-        <BeveledContainer mb={6}>
-          <Box display={{ md: "flex" }}>
-            <Box flexGrow={1}>
-              <Heading as='h2' size='lg' mb={4}>
-                <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
-                  <Typewriter
-                    options={{
-                      strings: ['software engineer', 'full stack developer', 'ai engineer'],
-                      autoStart: true,
-                      loop: true,
-                    }}
-                  />
-                </NeonGlowText>
+          <Box flex={1}>
+            <HStack justify="space-between" align="flex-start" mb={1}>
+              <Heading
+                as="h4"
+                size="md"
+                fontFamily="serif"
+                fontWeight="400"
+                color={textColor}
+                letterSpacing="tight"
+                textTransform="none"
+                lineHeight="short"
+              >
+                {title}
               </Heading>
-              <Text fontSize="md">
-                <BlinkingText>★</BlinkingText> B.S in Software Engineering from San Jose State University
-              </Text>
-            </Box>
+              {isLatest && (
+                <HStack
+                  spacing={1.5}
+                  px={2}
+                  py={0.5}
+                  borderRadius="full"
+                  border="1px solid"
+                  borderColor="rgba(34, 197, 94, 0.3)"
+                  bg="rgba(34, 197, 94, 0.08)"
+                  flexShrink={0}
+                  ml={2}
+                >
+                  <Box w={1.5} h={1.5} borderRadius="full" bg="green.400" />
+                  <Text fontSize="xs" fontFamily="mono" color="green.400">current</Text>
+                </HStack>
+              )}
+            </HStack>
+            <Text color="primary.500" fontFamily="mono" fontWeight="400" fontSize="xs" mb={0.5}>
+              {company}
+            </Text>
+            <Text color={mutedColor} fontSize="xs" fontFamily="mono">
+              {period}
+            </Text>
+          </Box>
+
+          <Text color={descriptionColor} fontSize="sm" lineHeight="tall">
+            {description}
+          </Text>
+        </VStack>
+      </Box>
+    </MotionBox>
+  )
+}
+
+const SectionHeader = ({ icon, label, title, description }) => {
+  const textColor = useColorModeValue('neutral.900', 'neutral.50')
+  const descriptionColor = useColorModeValue('neutral.600', 'neutral.400')
+  const mutedColor = useColorModeValue('neutral.500', 'neutral.500')
+
+  return (
+    <VStack align="start" spacing={4} mb={10}>
+      <HStack spacing={2}>
+        <Icon as={icon} boxSize={4} color="primary.500" />
+        <Text
+          fontSize="xs"
+          fontFamily="mono"
+          fontWeight="400"
+          color={mutedColor}
+          textTransform="uppercase"
+          letterSpacing="widest"
+        >
+          {label}
+        </Text>
+      </HStack>
+      <Heading
+        as="h2"
+        fontSize={{ base: 'display-sm', md: 'display-md' }}
+        fontFamily="serif"
+        fontWeight="400"
+        color={textColor}
+        letterSpacing="tight"
+        textTransform="none"
+        lineHeight="shorter"
+      >
+        {title}
+      </Heading>
+      {description && (
+        <Text color={descriptionColor} fontSize="lg" maxW="600px" lineHeight="tall">
+          {description}
+        </Text>
+      )}
+    </VStack>
+  )
+}
+
+const Home = () => {
+  const sectionBg = useColorModeValue('neutral.50', 'neutral.950')
+  const altSectionBg = useColorModeValue('white', 'rgba(255,255,255,0.01)')
+  const ctaBg = useColorModeValue('neutral.900', 'primary.500')
+  const ctaTextColor = useColorModeValue('neutral.50', 'neutral.900')
+
+  // Ordered oldest → newest to show the journey arc
+  const experiences = [
+    {
+      phase: 'before the clusters',
+      title: 'Python Developer',
+      company: 'Expert Witness Profiler LLC',
+      period: 'Jun 2022 – Sep 2022',
+      description: 'Built automated data collection pipelines using Beautiful Soup and Selenium for a legal tech client. Developed Pandas-based processing workflows for court records analysis. First production software work — three months, then straight into NALEJ.',
+      isLatest: false
+    },
+    {
+      phase: 'full-stack → infrastructure',
+      title: 'Software Engineer',
+      company: 'NALEJ.AI',
+      period: 'Sep 2022 – 2024',
+      description: 'Joined to ship full-stack tooling — built a GitLab analytics portal (Next.js, tRPC, Keycloak, Redis) with full offline compatibility and a deep learning issue estimation system using semantic embeddings. Quickly expanded into infrastructure: architected air-gapped LLM deployments using LiteLLM, Ollama, and Kubernetes, cutting setup time from hours to under one minute. Built Helm automation frameworks and contributed to a custom Kubernetes operator written in Go.',
+      isLatest: false
+    },
+    {
+      phase: 'platform engineering',
+      title: 'Platform Engineer & Tech Lead',
+      company: 'NALEJ.AI',
+      period: '2024 – Present',
+      description: 'Took ownership of a critical platform workload previously staffed by five engineers — leading design, incident response, and operational tooling. Owns cluster-wide Karpenter and KEDA configurations for automated node provisioning and event-driven autoscaling. Delivered end-to-end DevOps for a federal defense client across EKS and K3s: provisioning, image lifecycle, and air-gapped package distribution. Platform work contributed to $15.6M/year in operational savings. Ensured NSA-level compliance across all deployments. Currently building an agentic AI system for natural-language Kubernetes automation.',
+      isLatest: true
+    }
+  ]
+
+  return (
+    <Box>
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Skills Section */}
+      <FullSection bg={altSectionBg} position="relative" overflow="hidden">
+        <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+          <SectionHeader
+            icon={IoRocket}
+            label="Stack"
+            title="Technologies & Skills"
+            description="Go, Python, TypeScript, Kubernetes, LiteLLM, Helm, RAG, PyTorch, Next.js, FastAPI, Redis, PGVector, Terraform, Grafana."
+          />
+          <Section>
             <Box
-              flexShrink={0}
-              mt={{ base: 4, md: 0 }}
-              ml={{ md: 6 }}
-              textAlign="center"
+              borderRadius="xl"
+              overflow="hidden"
+              border="1px solid"
+              borderColor={useColorModeValue('neutral.200', 'rgba(255,255,255,0.07)')}
+              boxShadow={useColorModeValue(
+                '0 20px 50px rgba(0,0,0,0.08)',
+                '0 20px 50px rgba(0,0,0,0.4)'
+              )}
             >
-              <Box
-                border="4px solid"
-                borderColor={useColorModeValue('#FF00FF', '#00FFFF')}
-                w="100px"
-                h="100px"
-                display="inline-block"
-                borderRadius="0" // Square for 90s look
-                overflow="hidden"
-                boxShadow={`0 0 20px ${useColorModeValue('#FF00FF', '#00FFFF')}`}
-              >
-                <ProfileImage
-                  src="/static/profile.png"
-                  alt="Profile image"
-                  borderRadius="0"
-                  width={100}
-                  height={100}
-                  priority
-                />
-              </Box>
+              <FloatingSkills3D height="500px" />
             </Box>
-          </Box>
-        </BeveledContainer>
+          </Section>
+        </Container>
+      </FullSection>
 
-    <AnimatedDivider />
+      {/* Experience Section */}
+      <FullSection bg={sectionBg}>
+        <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+          <SectionHeader
+            icon={IoBriefcase}
+            label="Experience"
+            title="Career Arc"
+            description="From Python scripting to platform engineering in two years at the same company."
+          />
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
+            {experiences.map((exp, index) => (
+              <Section key={index} delay={index * 0.1}>
+                <ExperienceCard {...exp} />
+              </Section>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </FullSection>
 
-    <Section delay={0.1}>
-      <BeveledContainer>
-        <HStack justify="space-between" align="center" mb={4}>
-          <Heading as="h3" variant="section-title" mb={0}>
-            <NeonGlowText color={useColorModeValue('#FF1493', '#00FF00')}>
-              Skills <BlinkingText>⚡</BlinkingText>
-            </NeonGlowText>
-          </Heading>
-          <Tooltip
-            label={show3DSkills ? "Switch to Grid View" : "Switch to 3D View"}
-            placement="left"
-          >
-            <IconButton
-              icon={show3DSkills ? <ViewOffIcon /> : <ViewIcon />}
-              onClick={() => setShow3DSkills(!show3DSkills)}
-              variant="solid"
-              colorScheme="teal"
-              size="sm"
-              aria-label={show3DSkills ? "Switch to Grid View" : "Switch to 3D View"}
-            />
-          </Tooltip>
-        </HStack>
-
-        {show3DSkills ? (
-          <Box
-            borderRadius="0"
-            overflow="hidden"
-            bg={useColorModeValue('rgba(192,192,192,0.5)', 'rgba(64,64,64,0.5)')}
-            border="4px ridge"
-            borderColor={useColorModeValue('#808080', '#FF00FF')}
-          >
-            <FloatingSkills3D height="600px" />
-          </Box>
-        ) : (
-          <SkillsGrid />
-        )}
-      </BeveledContainer>
-    </Section>
-
-    <AnimatedDivider />
-
-    <Section delay={0.2}>
-      <BeveledContainer>
-        <Heading as="h3" variant="section-title">
-          <NeonGlowText color={useColorModeValue('#0000FF', '#FFFF00')}>
-            Work Experience <BlinkingText>💼</BlinkingText>
-          </NeonGlowText>
-        </Heading>
-
-        <Accordion allowToggle>
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box as='span' flex='1' textAlign='left'>
-                <b>Software Engineer @ NALEJ (Sep 2022-Present)</b>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          
-          <AccordionPanel pb={4}>
-            <p>
-              designed, developed and deployed a webpage with next.js and typescript, tailwind and trpc 
-              that consumed the gitlab API to provide statistics for all projects that are in that gitlab 
-              instance
-            </p>
-
-            <br></br>
-            
-            <p>
-              took on a engineering lead role in hosting LLMs on kuberntes in an
-              air-gapped environment
-            </p>
-
-            <br></br>
-
-            <p>
-              developed a discourse plugin for enhaned UX
-            </p>
-
-            <br></br>
-
-            <p>
-              worked on adding capabilities to an opertaor to automate deployment of
-              services with desired settings
-            </p>
-
-            <br></br>
-
-            <p>
-              containerized applications and services with docker for deployment in kubernetes
-            </p>
-
-          </AccordionPanel>
-
-        </AccordionItem>
-
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box as='span' flex='1' textAlign='left'>
-                <b>Freelance Python Developer @ Expert Witness Profiler LLC </b>
-                <br></br>
-                <b>(Jun 2022 - Sep 2022)</b>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-
-          <AccordionPanel pb={4}>
-            <p>
-              wrote a{" "}
-              <Link
+      {/* CTA Section */}
+      <FullSection bg={ctaBg} position="relative" overflow="hidden">
+        <Container maxW="container.md" px={{ base: 4, md: 8 }} textAlign="center">
+          <VStack spacing={6}>
+            <Heading
+              as="h2"
+              fontSize={{ base: 'display-sm', md: 'display-lg' }}
+              fontFamily="serif"
+              fontWeight="400"
+              color={ctaTextColor}
+              letterSpacing="tight"
+              textTransform="none"
+              lineHeight="shorter"
+            >
+              Let&apos;s work together
+            </Heading>
+            <Text
+              color={ctaTextColor}
+              fontSize="lg"
+              maxW="500px"
+              opacity={0.85}
+              lineHeight="tall"
+              fontFamily="body"
+            >
+              Building something in a constrained environment, or just want to talk shop?
+            </Text>
+            <HStack spacing={4} pt={4} flexWrap="wrap" justify="center">
+              <SketchyButton
                 as={NextLink}
-                href="https://github.com/akumar23/CourtScraper"
+                href="/contact"
                 scroll={false}
-              >
-                python script
-              </Link>{" "}
-              that automated data collection from online courts using beautiful soup
-              and selenium and used pandas to make data frames for that webscraped
-              data
-              <br></br>
-              <br></br>
-            </p>
-          </AccordionPanel>
-        </AccordionItem>
-        </Accordion>
-      </BeveledContainer>
-
-      <AnimatedDivider />
-
-      <BeveledContainer>
-        <Heading as="h3" variant="section-title">
-          <NeonGlowText color={useColorModeValue('#FF00FF', '#00FFFF')}>
-            Featured Projects <NewBadge />
-          </NeonGlowText>
-        </Heading>
-      <Link
-        as={NextLink}
-        href="https://github.com/akumar23/digit-predictor-neural-net"
-        scroll={false}
-      >
-        Digit Predictor Neural Network
-      </Link>
-      <br></br>
-      <Link
-        as={NextLink}
-        href="https://github.com/akumar23/hf-model-train"
-        scroll={false}
-      >
-        Huggingface Model Train Script
-      </Link>
-      <br></br>
-      <Link
-        as={NextLink}
-        href="https://comic-ranker.vercel.app/"
-        scroll={false}
-      >
-        Comic Ranker Full Stack Webapp
-      </Link>
-
-        <Box align="left" my={4}>
-          <MagneticButton
-            as={NextLink}
-            href="/projects"
-            scroll={false}
-            rightIcon={<ChevronRightIcon />}
-            colorScheme="teal"
-            size="md"
-          >
-            View All Projects
-          </MagneticButton>
-        </Box>
-      </BeveledContainer>
-    </Section>
-
-    <AnimatedDivider />
-
-    <Section delay={0.3}>
-      <BeveledContainer textAlign="center">
-        <List styleType="none">
-          <ListItem>
-            <Link href="https://github.com/akumar23" target="_blank">
-              <MagneticButton
-                variant="solid"
-                colorScheme="teal"
-                leftIcon={<IoLogoGithub />}
+                variant="outline"
                 size="lg"
+                sx={{
+                  borderColor: ctaTextColor,
+                  color: ctaTextColor,
+                  _hover: { bg: ctaTextColor, color: ctaBg }
+                }}
               >
-                <NeonGlowText>@akumar23 on GitHub</NeonGlowText>
-              </MagneticButton>
-            </Link>
-          </ListItem>
-        </List>
-      </BeveledContainer>
-    </Section>
+                Get in Touch
+              </SketchyButton>
+              <SketchyButton
+                as="a"
+                href="https://github.com/akumar23"
+                target="_blank"
+                variant="outline"
+                size="lg"
+                sx={{
+                  borderColor: ctaTextColor,
+                  color: ctaTextColor,
+                  _hover: { bg: ctaTextColor, color: ctaBg }
+                }}
+              >
+                <HStack>
+                  <IoLogoGithub />
+                  <Text>GitHub</Text>
+                </HStack>
+              </SketchyButton>
+            </HStack>
+          </VStack>
+        </Container>
+      </FullSection>
+    </Box>
+  )
+}
 
-    <BestViewedBadge />
-  </Container>
-  </>
-  );
-};
-export default Home;
-export { getServerSideProps } from "../components/chakra";
+export default Home
+export { getServerSideProps } from '../components/chakra'
