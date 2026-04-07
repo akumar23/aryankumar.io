@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { IoRocket, IoCode, IoLogoGithub, IoCube } from 'react-icons/io5'
+import { IoRocket, IoCode, IoLogoGithub, IoCube, IoServer, IoGameController } from 'react-icons/io5'
 import Section from '../components/section'
 
 import thumbHal from '../public/projectImage/hal.png'
@@ -486,7 +486,9 @@ const Projects = () => {
     ai: false,
     fullstack: false,
     python: false,
-    java: false
+    java: false,
+    infra: false,
+    vr: false
   })
 
   const toggleSection = (section) => {
@@ -512,13 +514,6 @@ const Projects = () => {
     },
     additional: [
       {
-        title: 'Collision Detection Neural Net',
-        description: 'Autonomous navigation system using neural networks for real-time obstacle avoidance with 99% success rate.',
-        thumbnail: thumbRobot,
-        href: 'https://github.com/akumar23/Collision-Detection-Neural-Net',
-        technologies: ['Python', 'scikit-learn', 'Pygame']
-      },
-      {
         title: 'Digit Predictor Neural Net',
         description: 'Handwritten digit recognition built from scratch using only NumPy, demonstrating core deep learning concepts.',
         thumbnail: thumbDigit,
@@ -531,25 +526,69 @@ const Projects = () => {
         thumbnail: thumbFlacon,
         href: 'https://huggingface.co/akumar23/mental-falcon-7b',
         technologies: ['Python', 'HuggingFace', 'PEFT']
+      },
+      {
+        title: 'Predict NBA MVP',
+        description: 'ML pipeline that scrapes Basketball Reference with Scrapy, engineers features from historical player stats, and trains a model to predict the season MVP.',
+        thumbnail: thumbRobot,
+        href: 'https://github.com/akumar23/Predict-NBA-MVP',
+        technologies: ['Python', 'Scrapy', 'scikit-learn']
       }
     ]
   }
 
   const fullstackProjects = {
     featured: {
-      title: 'Character Rank',
-      description: 'Interactive ranking platform with Elo-based system, 3D character visualization using Three.js, and serverless backend.',
-      thumbnail: thumbRank,
-      href: 'https://comic-ranker.vercel.app/',
-      technologies: ['Next.js', 'TypeScript', 'tRPC', 'Three.js']
+      title: 'BballIQ',
+      description: 'Basketball analytics platform for tracking player performance, shot charts, and game statistics with interactive visualizations and data-driven insights.',
+      thumbnail: thumbHal,
+      href: 'https://github.com/akumar23/BballIQ',
+      technologies: ['React', 'Node.js', 'MongoDB']
+    },
+    additional: []
+  }
+
+  const infraProjects = {
+    featured: {
+      title: 'kube-agent',
+      description: 'Conversational AI agent for Kubernetes cluster operations. Interprets natural language to query resources, stream logs, and automate common cluster workflows without writing kubectl commands.',
+      thumbnail: thumbFast,
+      href: 'https://github.com/akumar23/kube-agent',
+      technologies: ['Go', 'Kubernetes', 'LLM', 'CLI']
     },
     additional: [
       {
-        title: 'Fireblog',
-        description: 'Full-stack blogging platform with Google OAuth, real-time sync, and rich text editing.',
+        title: 'DOS-Detect',
+        description: 'Network traffic analyzer for detecting denial-of-service attacks. Identifies anomalous traffic patterns and flags potential attack vectors in real time.',
+        thumbnail: thumbTest,
+        href: 'https://github.com/akumar23/DOS-Detect',
+        technologies: ['Python', 'Network Security']
+      },
+      {
+        title: 'SDN Stateless Firewall',
+        description: 'Software-defined networking firewall using stateless packet filtering. Implements flow-based rules via an SDN controller to block malicious traffic at the network layer.',
+        thumbnail: thumbRest,
+        href: 'https://github.com/akumar23/SDN-Based-Stateless-Firewall',
+        technologies: ['SDN', 'OpenFlow', 'Python', 'Mininet']
+      }
+    ]
+  }
+
+  const vrProjects = {
+    featured: {
+      title: 'VR Bowling',
+      description: 'Immersive VR bowling game with realistic physics simulation and responsive hand tracking controls.',
+      thumbnail: thumbRank,
+      href: 'https://github.com/akumar23/VR-Bowling',
+      technologies: ['Unity', 'C#', 'VR']
+    },
+    additional: [
+      {
+        title: 'VR Hiking',
+        description: 'VR hiking experience featuring dynamic terrain, spatial audio, and smooth locomotion mechanics built in Unity.',
         thumbnail: thumbBlog,
-        href: 'https://fireblog-gray.vercel.app/',
-        technologies: ['Next.js', 'Tailwind', 'Firestore']
+        href: 'https://github.com/akumar23/VR-Hiking',
+        technologies: ['Unity', 'C#', 'VR']
       }
     ]
   }
@@ -576,6 +615,20 @@ const Projects = () => {
         thumbnail: thumbRest,
         href: 'https://github.com/akumar23/django-rest',
         technologies: ['Python', 'Django', 'REST']
+      },
+      {
+        title: 'CourtScraper',
+        description: 'Selenium and BeautifulSoup scraper that automates data collection from court records. Streamlit frontend lets you filter and explore case data visually.',
+        thumbnail: thumbBlog,
+        href: 'https://github.com/akumar23/CourtScraper',
+        technologies: ['Python', 'Selenium', 'BeautifulSoup', 'Streamlit']
+      },
+      {
+        title: 'Kumar-Knight',
+        description: 'Zelda-inspired action RPG built with Pygame. Features tile-based maps, enemy AI, weapon systems, and animated combat — all in Python.',
+        thumbnail: thumbRobot,
+        href: 'https://github.com/akumar23/Kumar-Knight',
+        technologies: ['Python', 'Pygame']
       }
     ]
   }
@@ -732,27 +785,19 @@ const Projects = () => {
       {/* Full Stack Projects */}
       <Box py={{ base: 12, md: 16 }} bg={altSectionBg}>
         <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
-          <SectionHeader icon={IoCube} title="Full Stack" count={2} />
+          <SectionHeader icon={IoCube} title="Full Stack" count={1} />
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             <Section>
               <ProjectCard {...fullstackProjects.featured} isFeatured />
             </Section>
-            {expandedSections.fullstack && fullstackProjects.additional.map((project, index) => (
-              <Section key={project.title} delay={index * 0.1}>
-                <ProjectCard {...project} />
-              </Section>
-            ))}
           </SimpleGrid>
-          <Box textAlign="center">
-            <ShowMoreButton isExpanded={expandedSections.fullstack} onClick={() => toggleSection('fullstack')} count={1} />
-          </Box>
         </Container>
       </Box>
 
       {/* Python Projects */}
       <Box py={{ base: 12, md: 16 }} bg={sectionBg}>
         <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
-          <SectionHeader icon={IoCode} title="Python" count={3} />
+          <SectionHeader icon={IoCode} title="Python" count={5} />
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             <Section>
               <ProjectCard {...pythonProjects.featured} isFeatured />
@@ -764,7 +809,7 @@ const Projects = () => {
             ))}
           </SimpleGrid>
           <Box textAlign="center">
-            <ShowMoreButton isExpanded={expandedSections.python} onClick={() => toggleSection('python')} count={2} />
+            <ShowMoreButton isExpanded={expandedSections.python} onClick={() => toggleSection('python')} count={4} />
           </Box>
         </Container>
       </Box>
@@ -785,6 +830,46 @@ const Projects = () => {
           </SimpleGrid>
           <Box textAlign="center">
             <ShowMoreButton isExpanded={expandedSections.java} onClick={() => toggleSection('java')} count={1} />
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Infrastructure Projects */}
+      <Box py={{ base: 12, md: 16 }} bg={sectionBg}>
+        <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+          <SectionHeader icon={IoServer} title="DevOps & Infrastructure" count={3} />
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+            <Section>
+              <ProjectCard {...infraProjects.featured} isFeatured />
+            </Section>
+            {expandedSections.infra && infraProjects.additional.map((project, index) => (
+              <Section key={project.title} delay={index * 0.1}>
+                <ProjectCard {...project} />
+              </Section>
+            ))}
+          </SimpleGrid>
+          <Box textAlign="center">
+            <ShowMoreButton isExpanded={expandedSections.infra} onClick={() => toggleSection('infra')} count={2} />
+          </Box>
+        </Container>
+      </Box>
+
+      {/* VR & Games Projects */}
+      <Box py={{ base: 12, md: 16 }} bg={altSectionBg}>
+        <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+          <SectionHeader icon={IoGameController} title="VR & Games" count={2} />
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+            <Section>
+              <ProjectCard {...vrProjects.featured} isFeatured />
+            </Section>
+            {expandedSections.vr && vrProjects.additional.map((project, index) => (
+              <Section key={project.title} delay={index * 0.1}>
+                <ProjectCard {...project} />
+              </Section>
+            ))}
+          </SimpleGrid>
+          <Box textAlign="center">
+            <ShowMoreButton isExpanded={expandedSections.vr} onClick={() => toggleSection('vr')} count={1} />
           </Box>
         </Container>
       </Box>
