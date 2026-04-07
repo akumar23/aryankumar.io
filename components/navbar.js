@@ -127,7 +127,6 @@ const Navbar = ({ path }) => {
   const navLinks = [
     { href: '/', label: 'home', ariaLabel: 'Go to homepage' },
     { href: '/projects', label: 'work', ariaLabel: 'View my projects' },
-    { href: '/lab', label: 'other projects', ariaLabel: 'View my other projects' },
     { href: '/contact', label: 'contact', ariaLabel: 'Get in touch' }
   ]
 
