@@ -85,7 +85,7 @@ const apps = [
     url: null,
     github: 'https://github.com/akumar23/SlitherRL',
     status: 'GITHUB',
-    technologies: ['Python', 'PyTorch', 'DQN'],
+    technologies: ['Go', 'DQN'],
     accent: '#A855F7'
   }
 ]

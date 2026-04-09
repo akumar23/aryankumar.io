@@ -45,8 +45,6 @@ const Main = ({ children, router }) => {
         return 'Aryan Kumar | Software Engineer'
       case '/projects':
         return 'Work | Aryan Kumar'
-      case '/lab':
-        return 'Lab | Aryan Kumar'
       case '/contact':
         return 'Contact | Aryan Kumar'
       default:
@@ -61,8 +59,6 @@ const Main = ({ children, router }) => {
         return 'Aryan Kumar — Software engineer specializing in AI infrastructure, Kubernetes, and full-stack systems.'
       case '/projects':
         return 'Projects by Aryan Kumar spanning AI/ML, full-stack development, and cloud infrastructure.'
-      case '/lab':
-        return 'Live apps and experiments by Aryan Kumar.'
       case '/contact':
         return 'Get in touch with Aryan Kumar for collaboration or opportunities.'
       default:
