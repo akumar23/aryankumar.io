@@ -28,6 +28,13 @@ import thumbRobot from '../public/projectImage/ai-robot.png'
 import thumbTrain from '../public/projectImage/model-train.png'
 import thumbBlog from '../public/projectImage/blog.png'
 import thumbFlacon from '../public/projectImage/falcon.png'
+import thumbNbaMvp from '../public/projectImage/nba-mvp.svg'
+import thumbBballIq from '../public/projectImage/bball-iq.jpg'
+import thumbCourtScraper from '../public/projectImage/court-scraper.png'
+import thumbKumarKnight from '../public/projectImage/kumar-knight.jpg'
+import thumbKubeAgent from '../public/projectImage/kube-agent.png'
+import thumbVrBowling from '../public/projectImage/vr-bowling.jpg'
+import thumbVrHiking from '../public/projectImage/vr-hiking.png'
 
 const MotionBox = motion(Box)
 
@@ -530,7 +537,7 @@ const Projects = () => {
       {
         title: 'Predict NBA MVP',
         description: 'ML pipeline that scrapes Basketball Reference with Scrapy, engineers features from historical player stats, and trains a model to predict the season MVP.',
-        thumbnail: thumbRobot,
+        thumbnail: thumbNbaMvp,
         href: 'https://github.com/akumar23/Predict-NBA-MVP',
         technologies: ['Python', 'Scrapy', 'scikit-learn']
       }
@@ -541,7 +548,7 @@ const Projects = () => {
     featured: {
       title: 'BballIQ',
       description: 'Basketball analytics platform for tracking player performance, shot charts, and game statistics with interactive visualizations and data-driven insights.',
-      thumbnail: thumbHal,
+      thumbnail: thumbBballIq,
       href: 'https://github.com/akumar23/BballIQ',
       technologies: ['React', 'Node.js', 'MongoDB']
     },
@@ -552,33 +559,18 @@ const Projects = () => {
     featured: {
       title: 'kube-agent',
       description: 'Conversational AI agent for Kubernetes cluster operations. Interprets natural language to query resources, stream logs, and automate common cluster workflows without writing kubectl commands.',
-      thumbnail: thumbFast,
+      thumbnail: thumbKubeAgent,
       href: 'https://github.com/akumar23/kube-agent',
       technologies: ['Go', 'Kubernetes', 'LLM', 'CLI']
     },
-    additional: [
-      {
-        title: 'DOS-Detect',
-        description: 'Network traffic analyzer for detecting denial-of-service attacks. Identifies anomalous traffic patterns and flags potential attack vectors in real time.',
-        thumbnail: thumbTest,
-        href: 'https://github.com/akumar23/DOS-Detect',
-        technologies: ['Python', 'Network Security']
-      },
-      {
-        title: 'SDN Stateless Firewall',
-        description: 'Software-defined networking firewall using stateless packet filtering. Implements flow-based rules via an SDN controller to block malicious traffic at the network layer.',
-        thumbnail: thumbRest,
-        href: 'https://github.com/akumar23/SDN-Based-Stateless-Firewall',
-        technologies: ['SDN', 'OpenFlow', 'Python', 'Mininet']
-      }
-    ]
+    additional: []
   }
 
   const vrProjects = {
     featured: {
       title: 'VR Bowling',
       description: 'Immersive VR bowling game with realistic physics simulation and responsive hand tracking controls.',
-      thumbnail: thumbRank,
+      thumbnail: thumbVrBowling,
       href: 'https://github.com/akumar23/VR-Bowling',
       technologies: ['Unity', 'C#', 'VR']
     },
@@ -586,7 +578,7 @@ const Projects = () => {
       {
         title: 'VR Hiking',
         description: 'VR hiking experience featuring dynamic terrain, spatial audio, and smooth locomotion mechanics built in Unity.',
-        thumbnail: thumbBlog,
+        thumbnail: thumbVrHiking,
         href: 'https://github.com/akumar23/VR-Hiking',
         technologies: ['Unity', 'C#', 'VR']
       }
@@ -619,14 +611,14 @@ const Projects = () => {
       {
         title: 'CourtScraper',
         description: 'Selenium and BeautifulSoup scraper that automates data collection from court records. Streamlit frontend lets you filter and explore case data visually.',
-        thumbnail: thumbBlog,
+        thumbnail: thumbCourtScraper,
         href: 'https://github.com/akumar23/CourtScraper',
         technologies: ['Python', 'Selenium', 'BeautifulSoup', 'Streamlit']
       },
       {
         title: 'Kumar-Knight',
         description: 'Zelda-inspired action RPG built with Pygame. Features tile-based maps, enemy AI, weapon systems, and animated combat — all in Python.',
-        thumbnail: thumbRobot,
+        thumbnail: thumbKumarKnight,
         href: 'https://github.com/akumar23/Kumar-Knight',
         technologies: ['Python', 'Pygame']
       }
