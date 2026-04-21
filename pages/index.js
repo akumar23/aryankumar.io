@@ -183,10 +183,10 @@ const Home = () => {
     },
     {
       phase: 'platform engineering',
-      title: 'Platform Engineer & Tech Lead',
+      title: 'Platform Engineering',
       company: 'NALEJ.AI',
       period: '2024 – Present',
-      description: 'Took ownership of a critical platform workload previously staffed by five engineers — leading design, incident response, and operational tooling. Owns cluster-wide Karpenter and KEDA configurations for automated node provisioning and event-driven autoscaling. Delivered end-to-end DevOps for a federal defense client across EKS and K3s: provisioning, image lifecycle, and air-gapped package distribution. Platform work contributed to $15.6M/year in operational savings. Ensured NSA-level compliance across all deployments. Currently building an agentic AI system for natural-language Kubernetes automation.',
+      description: 'Took ownership of application lifecycle management for six core platform applications previously staffed by five engineers — leading design, incident response, and operational tooling. Owns cluster-wide Karpenter and KEDA configurations for automated node provisioning and event-driven autoscaling. Delivered end-to-end DevOps for a federal defense client across EKS and K3s: provisioning, image lifecycle, and air-gapped package distribution. Platform work contributed to $15.6M/year in operational savings. Ensured NSA-level compliance across all deployments. Currently building an agentic AI system for natural-language Kubernetes automation.',
       isLatest: true
     }
   ]
